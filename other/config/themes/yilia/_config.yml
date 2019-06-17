@@ -1,13 +1,13 @@
 # Header
 
 menu:
-  主页: /
-  Java: /tags/java/
+  首页: /
+  JAVA篇: /tags/JAVA/
   未分类: /tags/未分类/
 
 # SubNav
 subnav:
-  github: "#"
+  github: "https://github.com/forvoyager"
   #weibo: "#"
   rss: "#"
   #zhihu: "#"
