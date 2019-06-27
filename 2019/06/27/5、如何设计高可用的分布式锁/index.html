@@ -6,23 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>3、别让手机偷走孩子的注意力 | 星空日记</title>
+  <title>5、如何设计高可用的分布式锁 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="“妈妈，我好无聊，我要看手机。” 每当这个时候，大部分家长都经不住孩子的哼唧，也认为看个十几分钟没多大关系，于是掏出手机，递给孩子，换自己一阵安静。 尤其是在排队时、等吃饭时、写完作业后，这些无聊的碎片时间，孩子更是坐立不安。 但这些被手机侵占的碎片时间，却正在拉开孩子间的距离。 你的做法里，藏着孩子二十年后的未来。">
-<meta name="keywords" content="未分类">
+  <meta name="description" content="分布式锁在分布式环境下，锁定全局唯一公共资源，表现为：请求串行化互斥性 第一步是上锁的资源目标，是锁定全局唯一公共资源，只有是全局唯一的资源才存在多个线程或服务竞争的情况。">
+<meta name="keywords" content="分布式,分布式锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3、别让手机偷走孩子的注意力">
-<meta property="og:url" content="http://forvoyager.github.io/2019/06/17/3、别让手机偷走孩子的注意力/index.html">
+<meta property="og:title" content="5、如何设计高可用的分布式锁">
+<meta property="og:url" content="http://forvoyager.github.io/2019/06/27/5、如何设计高可用的分布式锁/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="“妈妈，我好无聊，我要看手机。” 每当这个时候，大部分家长都经不住孩子的哼唧，也认为看个十几分钟没多大关系，于是掏出手机，递给孩子，换自己一阵安静。 尤其是在排队时、等吃饭时、写完作业后，这些无聊的碎片时间，孩子更是坐立不安。 但这些被手机侵占的碎片时间，却正在拉开孩子间的距离。 你的做法里，藏着孩子二十年后的未来。">
+<meta property="og:description" content="分布式锁在分布式环境下，锁定全局唯一公共资源，表现为：请求串行化互斥性 第一步是上锁的资源目标，是锁定全局唯一公共资源，只有是全局唯一的资源才存在多个线程或服务竞争的情况。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/20190617_1.jpg">
-<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/20190617_2.jpg">
-<meta property="og:updated_time" content="2019-06-26T02:43:48.202Z">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/1.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/2.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/3.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/4.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/5.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/6.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/7.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/5/8.jpg">
+<meta property="og:updated_time" content="2019-06-27T05:19:20.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3、别让手机偷走孩子的注意力">
-<meta name="twitter:description" content="“妈妈，我好无聊，我要看手机。” 每当这个时候，大部分家长都经不住孩子的哼唧，也认为看个十几分钟没多大关系，于是掏出手机，递给孩子，换自己一阵安静。 尤其是在排队时、等吃饭时、写完作业后，这些无聊的碎片时间，孩子更是坐立不安。 但这些被手机侵占的碎片时间，却正在拉开孩子间的距离。 你的做法里，藏着孩子二十年后的未来。">
-<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/20190617_1.jpg">
+<meta name="twitter:title" content="5、如何设计高可用的分布式锁">
+<meta name="twitter:description" content="分布式锁在分布式环境下，锁定全局唯一公共资源，表现为：请求串行化互斥性 第一步是上锁的资源目标，是锁定全局唯一公共资源，只有是全局唯一的资源才存在多个线程或服务竞争的情况。">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/5/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -160,90 +166,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-3、别让手机偷走孩子的注意力" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-5、如何设计高可用的分布式锁" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      3、别让手机偷走孩子的注意力
+      5、如何设计高可用的分布式锁
     </h1>
   
 
         
-        <a href="/2019/06/17/3、别让手机偷走孩子的注意力/" class="archive-article-date">
-  	<time datetime="2019-06-17T01:12:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-17</time>
+        <a href="/2019/06/27/5、如何设计高可用的分布式锁/" class="archive-article-date">
+  	<time datetime="2019-06-27T03:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>“妈妈，我好无聊，我要看手机。”</p>
-<p>每当这个时候，大部分家长都经不住孩子的哼唧，也认为看个十几分钟没多大关系，于是掏出手机，递给孩子，换自己一阵安静。</p>
-<p>尤其是在排队时、等吃饭时、写完作业后，这些无聊的碎片时间，孩子更是坐立不安。</p>
-<p><strong>但这些被手机侵占的碎片时间，却正在拉开孩子间的距离。</strong></p>
-<p><strong>你的做法里，藏着孩子二十年后的未来。</strong></p>
+        <p>分布式锁在分布式环境下，锁定全局唯一公共资源，表现为：<br><strong><em>请求串行化</em></strong><br><strong><em>互斥性</em></strong></p>
+<p>第一步是上锁的资源目标，是锁定全局唯一公共资源，只有是全局唯一的资源才存在多个线程或服务竞争的情况。</p>
 <a id="more"></a>
 
-<p>去年春季，一篇名为《别让手机偷走你的梦想》的演讲火爆朋友圈，南京第九中学的张恒柱校长在演讲里，让所有父母和孩子警惕，不要沦为<strong>“手机控”</strong>。
-在今年春季的开学典礼上，张恒柱校长再次指出一个很严肃的事实：</p>
-<blockquote>
-<p>“今天，我们的社会已始进入泛娱乐化时代，我们时刻被海量信息包围着，想安静地看会儿书，做几道题，手机来了消息，网页跳出弹窗，不是这个明星绯闻，就是“速看、震惊”这些标题党。</p>
-<p>但等你打开，满足好奇心后，看书学习这件事，早已被冲击得支离破碎。”</p>
-</blockquote>
-<p>是的，在这个信息爆炸的时代，只要我们一有时间，注意力都被手机占去了。</p>
-<p><strong>孩子长时间浸泡在手机提供的“低思考、高娱乐、低成本、高回报”的感官刺激里，有多少孩子还能够投入到枯燥的、需要不断努力才能看到成果的学习中去？</strong></p>
-<p>然而，我们依旧在允许手机吞噬孩子的注意力。<br>2016年的一个调查数据显示，家长平均每天愿意给孩子使用移动终端的累计时长约为40分钟。</p>
-<p><img src="/pic/unclassified/20190617_1.jpg" alt></p>
-<p><strong>泛娱乐化的时代，孩子的注意力正在被手机偷走。</strong></p>
-<p><strong>注意力被偷走的孩子，正在离成功越来越远。</strong></p>
-<p>美国心理学家朱利安·斯坦利在1971年启动了一个超常儿童研究项目，在45年时间里跟踪了美国五千名全国排名1%的超常儿童的职业和成就。</p>
-<p>研究结果证明，这五千名儿童绝大部分成为了一流的科学家、世界500强的CEO、联邦法官，包括扎克伯格、谢尔盖·布林等人。</p>
-<p>研究发现，专注力和整个学习的关联性远高于智商，一个人越专注，他将来获得成就的比例就越高。</p>
-<p>泛娱乐化时代，当大家的注意力都被碎片化阅读和爆炸性信息吞噬时，长时间的专注能力，已成为孩子最重要的竞争力之一。</p>
-<p><img src="/pic/unclassified/20190617_2.jpg" alt></p>
-<h1 id="如何提高注意力"><a href="#如何提高注意力" class="headerlink" title="如何提高注意力"></a>如何提高注意力</h1><p>如何提高孩子的注意力？并不是不让孩子看手机就可以了。</p>
-<blockquote>
-<p>“你给我专心点！”</p>
-<p>“看这里，别看其他地方！”</p>
-<p>“你又干嘛去了，快回来写作业！”</p>
-</blockquote>
-<p><strong>哪怕孩子被你压在书桌前，自身专注力不够的孩子，还是一样会走神。</strong></p>
-<p><strong>要从根本上提升孩子的注意力，首先要科学地认知注意力。</strong></p>
-<p>关于人类注意力的基本规则和普遍情况，澳大利亚的心理学家莉·沃特斯在其著作《优势教养》中给出了这样的一组数据：</p>
+<p>互斥性表现为一个资源的隔离级别串行化，如果对照单机事务 ACID 的隔离性来说，互斥性的事务隔离级别是 SERLALIZABLE，属于最高的隔离级别。</p>
+<p>事务隔离级别：<br><strong><em>DEFAULT</em></strong><br><strong><em>READ_UNCOMMITTED</em></strong><br><strong><em>READ_COMMITED</em></strong><br><strong><em>REPEATABLE_READ</em></strong><br><strong><em>SERLALIZABLE</em></strong></p>
+<h4 id="分布式锁目的"><a href="#分布式锁目的" class="headerlink" title="分布式锁目的"></a>分布式锁目的</h4><p>分布式锁的目的如下：</p>
 <ul>
-<li>儿童，毫无疑问，不擅长集中和保持注意力，多数3岁的孩子只能保持专注3~5分钟。</li>
-<li>在6~12岁之间，孩子的注意力会有一个突飞猛进的发展期，孩子的专注时间可以提高到10分钟左右。</li>
-<li>在15岁左右，注意力集中能力又会有一个飞跃，这是大脑发展和髓鞘化增多的结果，让我们的注意力可以保持20~25分钟。</li>
-<li>此后，我们的注意力水平趋于稳定，所以作为成年人，我们的注意力水平并没有比青少年时高很多。</li>
+<li>解决业务层幂等性</li>
+<li>解决 MQ 消费端多次接受同一消息</li>
+<li>确保串行|隔离级别</li>
+<li>多台机器同时执行定时任务 </li>
 </ul>
-<p>据沃特斯博士介绍，成年人工作时之所以能够一直专注在电脑或工作台前，<strong>并不是我们能连续好几个小时保持专注，而是我们在不断地重新集中注意力，重新保持专注。</strong></p>
-<p>回想一下，当我们来到办公室后，打开电脑，专注一段时间后，也会随手喝口水，也会两眼看看远处思考另一个问题，也会突然想到早上忘记提醒孩子带水杯，只是我们又能很快地专注回来罢了。</p>
-<p>而我们经常要求孩子把注意力集中在一件事情上，并长时间保持这种状态，不因为别的事情分心。</p>
-<p>我们的要求太高了。</p>
-<p><strong>这样不是在提高孩子的注意力，而是在强迫他们坐在书桌前而已。</strong></p>
-<p><strong>真正提高孩子的注意力，应该是引导孩子自发地十分专注于某一件事，让他增强这个能力。</strong></p>
-<p>美国心理学家朱利安· 斯坦利的研究中也指出，学生只有达到在外界看起来十分专注、刻苦、自觉的学习，而自身认为十分自然的时候，学习就进入了有效的深度学习阶段。<br>我们经常看到，孩子在玩乐高积木时一玩就是一个小时，吃饭喝水上厕所都给忘了，这时候孩子就已经进入了深度专注的状态。<br>培养孩子这种自发的注意力，才是关键。</p>
-<h1 id="注意力训练场景"><a href="#注意力训练场景" class="headerlink" title="注意力训练场景"></a>注意力训练场景</h1><p>注意力的形成是一个体系化过程，需要创造一定的环境，以及一定的刻意练习。</p>
-<p>但这并不代表只有专业人士才能训练孩子的注意力。只要家长掌握了一定的原理和方法，就可以从生活中找到很多机会去训练孩子的注意力。</p>
-<p><strong>尤其是那些被手机侵占的碎片时间，用来做注意力的训练，最合适不过。</strong></p>
-<p><strong>等车、排队、学习间歇等碎片时间，跟孩子玩一些有趣的游戏，用孩子喜欢的方式去加强注意力的训练，不知不觉中，孩子的注意力，就“高人一等”了。</strong></p>
-<h2 id="等车、坐车"><a href="#等车、坐车" class="headerlink" title="等车、坐车"></a>等车、坐车</h2><p>等车或坐车时，由于不方便使用道具，所以最好的注意力训练道具就是周围所能看到的一切。</p>
-<p>让孩子找车牌号码中的某个数字，找店铺招牌上的某个文字，找这个路口的路牌在哪里，找红绿灯周围有没有摄像头……路上的一切，都可以用来提高孩子的注意力。</p>
-<p>平时跟娇娇玩的时候，我就发现，她找出来的数量越多，越兴奋，越想玩，就越专注去找，不知不觉中，就已经进入深度专注。</p>
-<p>这个游戏成为我和娇娇等车、坐车的主旋律之后，她的各种无聊、晕车、扭捏，都不见踪影了。</p>
-<h2 id="排队、等吃饭"><a href="#排队、等吃饭" class="headerlink" title="排队、等吃饭"></a>排队、等吃饭</h2><p><strong>1、妈妈背包里有什么：</strong><br>一般出行，为了训练孩子注意力特意拿上道具，没太大必要。妈妈的背包，就是一个很好的道具。<br>让孩子看3-5秒钟背包里有什么物品，然后拉上背包拉链，问孩子背包里头有什么。每玩一次，可以将背包里的某一样物品拿出来之后，再跟孩子玩下一轮。<br>除了说出物品名称之外，还可以让孩子说说物品的颜色，换着法子玩。<br>这个游戏，注意力、观察力、记忆力都能加强，一举三得。</p>
-<p><strong>2、接数字：</strong><br>玩这个游戏的孩子一定要达到能流利数数的阶段，特别适合在幼儿园刚刚学了数字的孩子。<br>家长说出几个数字，孩子要接着往下数出一样多的数。例如，家长说1、2、3，孩子就要说4、5、6；家长说7、8，宝宝就要说9、10…<br>这个游戏不仅能训练孩子的专注力，还可以引导孩子学会更多的数字。</p>
-<p><strong>3、大小西瓜：</strong><br>这个游戏至少需要3个人，最好拉上爸爸一起玩。<br>第一个人当排头，说“大西瓜”，但两手比成小西瓜的样子；接着第二个人说：“小西瓜”，但两手比成大西瓜的样子，依次直到最后一人。<br>类似的游戏还有，妈妈说“左手”，孩子举起右手；妈妈说“往前一步”，孩子就向后一步。<br>这种类型的游戏，可以破除思维的定式和思维惯性，也是训练孩子专注力的一种方法。</p>
-<h2 id="学习间歇、写完作业"><a href="#学习间歇、写完作业" class="headerlink" title="学习间歇、写完作业"></a>学习间歇、写完作业</h2><p><strong>1、抓手指游戏：</strong><br>妈妈可以随意从书上找一段文字，找到文字里出现频率较高的某一个字。<br>如：弯弯的月儿小小的船。小小的船儿两头尖。我在小小的船里坐，只看见闪闪的星星蓝蓝的天。<br>让孩子把食指放在妈妈的掌心附近，当妈妈念到文字里的“小”字时，妈妈就会抓孩子的食指，孩子听到“小”字时就要快速抽离食指躲避。<br>每次玩这个游戏时，家里总是一片笑声。娇娇长时间学习后紧张的神经，也会因为这个游戏小小的刺激而放松很多，然后又能很好地投入到下一阶段的学习。</p>
-<p><strong>2、衣服拍一下、食物拍两下：</strong><br>这个游戏可以结合语文、英语等学习过的词汇来玩。<br>在一年级的英语里，每一个单元学习的都是相同类型物品的词汇，妈妈就可以挑出一组衣服类的单词，和一组食物类的单词，混合在一起。<br>当妈妈念到衣服类的单词时，孩子拍一下掌，当妈妈念到食物类的单词时，孩子拍两下掌。<br>这样既能让孩子在学习间隙放松，又无形中帮助孩子强化所学到的单词。<br>效果杠杠的。</p>
-<p><strong>3、6的倍数：</strong><br>这个游戏适合大一点的孩子，跟大人一起玩。<br>一人说一个数，但是轮到带有6的数字，以及6的倍数的数字的人，就不能说话，用拍一下掌代替。<br>这个游戏，非常锻炼孩子的注意力和大脑的运算能力，大人有时候都会算错哦。</p>
-<p><strong>法国生物学家乔治.居维叶说：“天才，首先是注意力。”</strong></p>
-<p><strong>这个注意力，应该是孩子自发的、自然集中的注意力，而非大人强迫的。</strong></p>
-<p><strong>把孩子被手机偷走的那些碎片时间，拿来跟孩子一起玩这些有趣的注意力训练游戏，孩子一定能在游戏中，不知不觉地，玩出一身专注的能力，玩出一个不一样的未来。</strong></p>
-<p><span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;background-color: rgb(255, 255, 255);letter-spacing: 0.5px;font-size: 14px;color: rgb(136, 136, 136);">来源：<a href="https://mp.weixin.qq.com/s?__biz=MjM5NTY2ODE0MA==&mid=2650134700&idx=2&sn=53b577230403c7ebe206e00cfb328496&chksm=bef4716f8983f87912297dd0f3eaccb9047eb5c48414a79a7ad66e21a1ca3f2fdf3ff9fc0267&mpshare=1&scene=1&srcid=0617oMBsflriWMIF9TrCx7SL#rd" target="_blank" rel="noopener">娇娇妈（ID: jiaojiaoma8）</a></span></p>
+<h4 id="寻找唯一资源进行上锁"><a href="#寻找唯一资源进行上锁" class="headerlink" title="寻找唯一资源进行上锁"></a>寻找唯一资源进行上锁</h4><p>例子：</p>
+<ol>
+<li>防止用户重复下单 共享资源进行上锁的对象 ： 【用户id】</li>
+<li>订单生成后发送MQ给消费者进行积分的添加 寻找上锁的对象 ：【订单id】</li>
+<li>用户已经创建订单，准备对订单进行支付，同时商家在对这个订单进行改价 寻找上锁对象 ： 【订单id】</li>
+</ol>
+<h4 id="基于-Redis-分布式锁"><a href="#基于-Redis-分布式锁" class="headerlink" title="基于  Redis  分布式锁"></a>基于  <a href="http://www.codercto.com/category/redis.html" target="_blank" rel="noopener">Redis</a>  分布式锁</h4><p>Redis 单线程串行处理天然就是解决串行化问题，用来解决分布式锁是再适合不过。</p>
+<p>实现方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setnx key value Expire_time  </span><br><span class="line">获取到锁 返回 1 ， 获取失败 返回 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="存在问题如下"><a href="#存在问题如下" class="headerlink" title="存在问题如下"></a>存在问题如下</h4><ol>
+<li>锁时间不可控</li>
+</ol>
+<p>Redis 只能在 Setnx 指定一个锁的超时时间，假设初始设定锁的时间是 10 秒钟，但是业务获取到锁跑了 20 秒钟，在 10 秒钟之后，如果又有一个业务可以获取到相同的一把锁。</p>
+<p>这个时候可能就存在两个相同的业务都获取得到锁的问题，并且两个业务处在并行阶段。也就是第一个获取锁的业务无法对自身的锁进行续租。</p>
+<ol start="2">
+<li>单点连接超时问题</li>
+</ol>
+<p>Redis 的 Client 与 Server 端并没有维持心跳的机制，如果在连接中出现问题，Client 会得到一个超时的回馈。</p>
+<ol start="3">
+<li>主从问题</li>
+</ol>
+<p>Redis 的集群实际上在 CAP 模式中是处在与 AP 的模型，保证可用性。在主从复制中“主”有数据，但可能“从”还没有数据。这个时候，一旦主挂掉或者网络抖动等各种原因，可能会切换到“从”节点。</p>
+<p><img src="/pic/5/1.jpg" alt></p>
+<p>这个时候有可能会导致两个业务线程同时的获取到两把锁：</p>
+<p>①业务线程-1：向主节点请求锁</p>
+<p>②业务线程-1：获取锁</p>
+<p>③业务线程-1：获取到锁并开始执行业务</p>
+<p>④这个时候 Redis 刚生成的锁在主从之间还未进行同步</p>
+<p>⑤Redis 这时候主节点挂掉了</p>
+<p>⑥Redis 的从节点升级为主节点</p>
+<p>⑦业务线程-2：向新的主节点请求锁</p>
+<p>⑧业务线程-2：获取到新的主节点返回的锁</p>
+<p>⑨业务线程-2：获取到锁开始执行业务</p>
+<p>⑩这个时候业务线程-1和业务线程-2同时在执行任务</p>
+<p>Redlock</p>
+<p>上述的问题其实并不是 Redis 的缺陷，只是 Redis 采用了 AP 模型，它本身无法确保我们对一致性的要求。</p>
+<p>Redis 官方推荐 Redlock 算法来保证，问题是 Redlock 至少需要三个 Redis 主从实例来实现，维护成本比较高。</p>
+<p>相当于 Redlock 使用三个 Redis 集群实现了自己的另一套一致性算法，比较繁琐，在业界也使用得比较少。</p>
+<h4 id="能不能使用-Redis-作为分布式锁"><a href="#能不能使用-Redis-作为分布式锁" class="headerlink" title="能不能使用 Redis 作为分布式锁"></a>能不能使用 Redis 作为分布式锁</h4><p>能不能使用 Redis 作为分布式锁，这个本身就不是 Redis 的问题，还是取决于业务场景，我们先要自己确认我们的场景是适合 AP 还是 CP。</p>
+<p>如果在社交发帖等场景下，我们并没有非常强的事务一致性问题，Redis 提供给我们高性能的 AP 模型是非常适合的。</p>
+<p>但如果是交易类型，对数据一致性非常敏感的场景，我们可能要寻找一种更加适合的 CP 模型。</p>
+<p>Redis 可能作为高可用的分布式锁并不合适，我们需要确立高可用分布式锁的设计目标。</p>
+<h4 id="高可用分布式锁设计目标"><a href="#高可用分布式锁设计目标" class="headerlink" title="高可用分布式锁设计目标"></a>高可用分布式锁设计目标</h4><p>高可用分布式锁的设计目标如下：<br><strong><em>强一致性，是 CP 模型</em></strong><br><strong><em>服务高可用，不存在单点问题</em></strong><br><strong><em>锁能够续租和自动释放</em></strong><br><strong><em>业务接入简单</em></strong>  </p>
+<h4 id="三种分布式锁方案对比"><a href="#三种分布式锁方案对比" class="headerlink" title="三种分布式锁方案对比"></a>三种分布式锁方案对比</h4><p>常用的三种分布式锁方案对比如下图：</p>
+<p><img src="/pic/5/2.jpg" alt></p>
+<h4 id="基于-Zookeeper-分布式锁"><a href="#基于-Zookeeper-分布式锁" class="headerlink" title="基于 Zookeeper 分布式锁"></a>基于 Zookeeper 分布式锁</h4><p>刚刚也分析过，Redis 其实无法确保数据的一致性，先来看 Zookeeper 是否合适作为我们需要的分布式锁。</p>
+<p>首先 ZK 的模式是 CP 模型，也就是说，当 ZK 锁提供给我们进行访问的时候，在 ZK 集群中能确保这把锁在 ZK 的每一个节点都存在。</p>
+<p><img src="/pic/5/3.jpg" alt></p>
+<p>这个实际上是 ZK 的 Leader 通过二阶段提交写请求来保证的，这个也是 ZK 的集群规模大了的一个瓶颈点。</p>
+<h4 id="ZK-锁实现的原理"><a href="#ZK-锁实现的原理" class="headerlink" title="ZK 锁实现的原理"></a>ZK 锁实现的原理</h4><p>说 ZK 的锁问题之前先看看 Zookeeper 中的几个特性，这几个特性构建了 ZK 的一把分布式锁。</p>
+<p>Zookeeper 中的几个特性如下：</p>
+<ul>
+<li>有序节点，当在一个父目录下如 /lock 下创建有序节点，节点会按照严格的先后顺序创建出自节点 lock000001，lock000002，lock0000003，以此类推，有序节点能严格保证各个自节点按照排序命名生成。</li>
+<li>临时节点，客户端建立了一个临时节点，在客户端的会话结束或会话超时，Zookeeper 会自动删除该节点 ID。</li>
+<li>事件监听，在读取数据时，我们可以对节点设置监听，当节点的数据发生变化(1 节点创建，2 节点删除，3 节点数据变动，4 子节点变动)时，Zookeeper 会通知客户端。 </li>
+</ul>
+<p><img src="/pic/5/4.jpg" alt></p>
+<p>结合这几个特点，来看下 ZK 是怎么组合分布式锁：</p>
+<ul>
+<li>业务线程-1，业务线程-2 分别向 ZK 的 /lock 目录下，申请创建有序的临时节点。</li>
+<li>业务线程-1 抢到 /lock0001 的文件，也就是在整个目录下最小序的节点，也就是线程-1 获取到了锁。</li>
+<li>业务线程-2 只能抢到 /lock0002 的文件，并不是最小序的节点，线程 2 未能获取锁。</li>
+<li>业务线程-1 与 lock0001 建立了连接，并维持了心跳，维持的心跳也就是这把锁的租期。</li>
+<li>当业务线程-1 完成了业务，将释放掉与 ZK 的连接，也就是释放了这把锁。 </li>
+</ul>
+<h4 id="ZK-分布式锁的代码实现"><a href="#ZK-分布式锁的代码实现" class="headerlink" title="ZK 分布式锁的代码实现"></a>ZK 分布式锁的代码实现</h4><p>ZK 官方提供的客户端并不支持分布式锁的直接实现，我们需要自己写代码去利用 ZK 的这几个特性去进行实现：</p>
+<p><img src="/pic/5/5.jpg" alt></p>
+<h4 id="ZK-分布式锁客户端假死的问题"><a href="#ZK-分布式锁客户端假死的问题" class="headerlink" title="ZK 分布式锁客户端假死的问题"></a>ZK 分布式锁客户端假死的问题</h4><p>客户端创建了临时有序节点并建立了事件监听，就可以让业务线程与 ZK 维持心跳，这个心跳也就是这把锁的租期。</p>
+<p>当客户端的业务线程完成了执行就把节点进行删除，也就释放了这把锁，不过中间也可能存在问题：</p>
+<ul>
+<li>客户端挂掉。因为注册的是临时节点，客户端挂掉，ZK 会进行感知，也就会把这个临时节点删除，锁也就随着释放。</li>
+<li>业务线程假死。业务线程并没有消息，而是一个假死状态，(例如死循环，死锁，超长 GC)，这个时候锁会被一直霸占不能释放，这个问题需要从两个方面进行解决。 </li>
+</ul>
+<p>第一个是本身业务代码的问题，为何会出现死循环，死锁等问题;第二个是对锁的异常监控问题，这个其实也是微服务治理的一个方面。</p>
+<h4 id="ZK-分布式锁的-GC-问题"><a href="#ZK-分布式锁的-GC-问题" class="headerlink" title="ZK 分布式锁的 GC 问题"></a>ZK 分布式锁的 GC 问题</h4><p><img src="/pic/5/6.jpg" alt></p>
+<p>刚刚说了 ZK 锁的维持是靠 ZK 和客户端的心跳进行维持，如果客户端出现了长时间的 GC 会出现什么状况：</p>
+<p>①业务线程-1 获取到锁，但未开始执行业务。</p>
+<p>②业务线程-2 发生长时间的 GC。</p>
+<p>③业务线程-1 和 ZK 的心跳发生断链。</p>
+<p>④lock0001 的临时节点因为心跳断链而被删除。</p>
+<p>⑤业务线程-2 获取到锁。</p>
+<p>⑥业务线程-2 开始执行业务。</p>
+<p>⑦业务线程-1 GC完毕，开始执行业务。</p>
+<p>⑧业务线程-1 和业务线程-2 同时执行业务。</p>
+<h4 id="基于-Etcd-分布式锁"><a href="#基于-Etcd-分布式锁" class="headerlink" title="基于 Etcd 分布式锁"></a>基于 Etcd 分布式锁</h4><h4 id="Etcd-分布式锁的实现原理"><a href="#Etcd-分布式锁的实现原理" class="headerlink" title="Etcd 分布式锁的实现原理"></a>Etcd 分布式锁的实现原理</h4><p>Etcd 实现分布式锁比 ZK 要简单很多，就是使用 Key Value 的方式进行写入。</p>
+<p>在集群中，如果存在 Key 的话就不能写入，也就意味着不能获取到锁，如果集群中，可以写入 Key，就意味着获取得到锁。</p>
+<p>Etcd 到使用了 Raft 保证了集群的一致性，也就是在外界看来，只要 Etcd 集群中某一台机器存在了锁，所有的机器也就存在了锁。</p>
+<p>这个跟 ZK 一样属于强一致性，并且数据是可以进行持久化，默认数据一更新就持久化。</p>
+<p><img src="/pic/5/7.jpg" alt></p>
+<h4 id="锁的租期续约问题"><a href="#锁的租期续约问题" class="headerlink" title="锁的租期续约问题"></a>锁的租期续约问题</h4><p>Etcd 并不存在一个心跳的机制，所以跟 Redis 一样获取锁的时候就要对其进行 Expire 的指定，这个时候就存在一个锁的租期问题。</p>
+<p>租期问题有几种思路可以去解决，这里讨论其中一种：在获取到锁的业务线程，可以开启一个子线程去维护和轮训这把锁的有效时间，并定时的对这把锁进行续租。</p>
+<p><img src="/pic/5/8.jpg" alt></p>
+<p>假设业务线程获取到一把锁，锁的 Expire 时间为 10s，业务线程会开启一个子线程通过轮训的方式每 2 秒钟去把这把锁进行续租，每次都将锁的 Expire 还原到 10s。</p>
+<p>当业务线程执行完业务时，会把这把锁进行删除，事件完毕。</p>
+<p>这种思路一样会存在问题：</p>
+<ul>
+<li>客户端挂掉，业务线程和续租子线程都会挂掉，锁最终会释放。</li>
+<li>业务线程假死，这个跟 ZK 的假死情况一样，也是属于业务代码应该解决的问题。</li>
+<li>客户端超长 GC 问题，长 GC 导致续租子进程没有进行及时续租，锁被超时释放。(GC 的问题可能是个极端问题，一般 GC 超过几秒就可能去查看问题了) </li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>首先得了解清楚我们使用分布式锁的场景，为何使用分布式锁，用它来帮我们解决什么问题，先聊场景后聊分布式锁的技术选型。</p>
+<p>无论是 Redis，ZK，Etcd，其实在各个场景下或多或少都存在一些问题，例如：</p>
+<ul>
+<li>Redis 的 AP 模型会限制很多使用场景，但它却拥有了几者中最高的性能。</li>
+<li>ZK 的分布式锁要比 Redis 可靠很多，但他繁琐的实现机制导致了它的性能不如 Redis，而且 ZK 会随着集群的扩大而性能更加下降。</li>
+<li>Etcd 看似是一种折中的方案，不过像锁的租期续约都要自己去实现。 </li>
+</ul>
+<p>简单来说，先了解业务场景，后进行技术选型。</p>
+<h3 id="为你推荐"><a href="#为你推荐" class="headerlink" title="为你推荐:"></a>为你推荐:</h3><ul>
+<li><a href="https://www.codercto.com/a/84681.html" target="_blank" rel="noopener">「如何设计」高可用的分布式锁</a></li>
+<li><a href="https://www.codercto.com/a/10624.html" target="_blank" rel="noopener">细谈分布式锁及在OpenStack上的应用：如何实现Active/Active高可用</a></li>
+<li><a href="https://www.codercto.com/a/38659.html" target="_blank" rel="noopener">自动化高可用：基于数据库的分布式锁</a></li>
+<li><a href="https://www.codercto.com/a/72781.html" target="_blank" rel="noopener">灵魂一问：深度强化学习终到尽头？</a></li>
+</ul>
+<h3 id="相关软件推荐"><a href="#相关软件推荐" class="headerlink" title="相关软件推荐:"></a>相关软件推荐:</h3><ul>
+<li><a href="https://www.codercto.com/soft/d/172.html" target="_blank" rel="noopener">高性能分布式 RPC 框架 commonrpc</a></li>
+<li><a href="https://www.codercto.com/soft/d/194.html" target="_blank" rel="noopener">分布式对象图 NetworkObjects</a></li>
+<li><a href="https://www.codercto.com/soft/d/287.html" target="_blank" rel="noopener">分布式lua开发框架 distri.lua</a></li>
+<li><a href="https://www.codercto.com/soft/d/5.html" target="_blank" rel="noopener">分布式消息推送服务 GoPush</a></li>
+<li><a href="https://www.codercto.com/soft/d/48.html" target="_blank" rel="noopener">分布式流控系统 dimit</a></li>
+</ul>
 
       
 
@@ -257,7 +334,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未分类</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
         		</li>
       		
 		</ul>
@@ -313,7 +394,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/17/3、别让手机偷走孩子的注意力/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/27/5、如何设计高可用的分布式锁/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +408,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/26/4、聊一聊分布式锁的设计/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          4、聊一聊分布式锁的设计
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/14/2、代码生成器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2、代码生成器</div>
+    <a href="/2019/06/26/4、聊一聊分布式锁的设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">4、聊一聊分布式锁的设计</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -365,8 +437,8 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何提高注意力"><span class="toc-number">1.</span> <span class="toc-text">如何提高注意力</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意力训练场景"><span class="toc-number">2.</span> <span class="toc-text">注意力训练场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#等车、坐车"><span class="toc-number">2.1.</span> <span class="toc-text">等车、坐车</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排队、等吃饭"><span class="toc-number">2.2.</span> <span class="toc-text">排队、等吃饭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习间歇、写完作业"><span class="toc-number">2.3.</span> <span class="toc-text">学习间歇、写完作业</span></a></li></ol></li></ol>
-                    </div>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式锁目的"><span class="toc-number">1.</span> <span class="toc-text">分布式锁目的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#寻找唯一资源进行上锁"><span class="toc-number">2.</span> <span class="toc-text">寻找唯一资源进行上锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于-Redis-分布式锁"><span class="toc-number">3.</span> <span class="toc-text">基于  Redis  分布式锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存在问题如下"><span class="toc-number">4.</span> <span class="toc-text">存在问题如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#能不能使用-Redis-作为分布式锁"><span class="toc-number">5.</span> <span class="toc-text">能不能使用 Redis 作为分布式锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高可用分布式锁设计目标"><span class="toc-number">6.</span> <span class="toc-text">高可用分布式锁设计目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三种分布式锁方案对比"><span class="toc-number">7.</span> <span class="toc-text">三种分布式锁方案对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于-Zookeeper-分布式锁"><span class="toc-number">8.</span> <span class="toc-text">基于 Zookeeper 分布式锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZK-锁实现的原理"><span class="toc-number">9.</span> <span class="toc-text">ZK 锁实现的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZK-分布式锁的代码实现"><span class="toc-number">10.</span> <span class="toc-text">ZK 分布式锁的代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZK-分布式锁客户端假死的问题"><span class="toc-number">11.</span> <span class="toc-text">ZK 分布式锁客户端假死的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ZK-分布式锁的-GC-问题"><span class="toc-number">12.</span> <span class="toc-text">ZK 分布式锁的 GC 问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于-Etcd-分布式锁"><span class="toc-number">13.</span> <span class="toc-text">基于 Etcd 分布式锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Etcd-分布式锁的实现原理"><span class="toc-number">14.</span> <span class="toc-text">Etcd 分布式锁的实现原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#锁的租期续约问题"><span class="toc-number">15.</span> <span class="toc-text">锁的租期续约问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">16.</span> <span class="toc-text">总结</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#为你推荐"><span class="toc-number"></span> <span class="toc-text">为你推荐:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关软件推荐"><span class="toc-number"></span> <span class="toc-text">相关软件推荐:</span></a>
+                    </li></div>
                 </span>
             </div>
         </div>
