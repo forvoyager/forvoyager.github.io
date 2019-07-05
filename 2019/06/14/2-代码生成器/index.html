@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>1、github+hexo构建个人博客 | 星空日记</title>
+  <title>2.代码生成器 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一篇就写你吧……">
-<meta name="keywords" content="未分类">
+  <meta name="description" content="节省时间去陪老婆，就靠你了……">
+<meta name="keywords" content="JAVA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1、github+hexo构建个人博客">
-<meta property="og:url" content="http://forvoyager.github.io/2019/06/13/1、github-hexo构建个人博客/index.html">
+<meta property="og:title" content="2.代码生成器">
+<meta property="og:url" content="http://forvoyager.github.io/2019/06/14/2-代码生成器/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="第一篇就写你吧……">
+<meta property="og:description" content="节省时间去陪老婆，就靠你了……">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/hexo.jpg">
-<meta property="og:updated_time" content="2019-06-26T02:43:37.354Z">
+<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
+<meta property="og:updated_time" content="2019-07-05T09:40:54.095Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1、github+hexo构建个人博客">
-<meta name="twitter:description" content="第一篇就写你吧……">
-<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/hexo.jpg">
+<meta name="twitter:title" content="2.代码生成器">
+<meta name="twitter:description" content="节省时间去陪老婆，就靠你了……">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -177,84 +177,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1、github-hexo构建个人博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2-代码生成器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      1、github+hexo构建个人博客
+      2.代码生成器
     </h1>
   
 
         
-        <a href="/2019/06/13/1、github-hexo构建个人博客/" class="archive-article-date">
-  	<time datetime="2019-06-13T06:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-13</time>
+        <a href="/2019/06/14/2-代码生成器/" class="archive-article-date">
+  	<time datetime="2019-06-14T09:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>第一篇就写你吧……<br><img src="/pic/unclassified/hexo.jpg" alt></p>
+        <p>节省时间去陪老婆，就靠你了……<br><img src="/pic/unclassified/codegen-cover.png" alt></p>
 <a id="more"></a>
 
-<h1 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h1><p>具体安装过程此处不赘述，见<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官方文档</a>，安装完成后执行下面命令验证是否安装成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;node -v</span><br><span class="line">v8.7.0</span><br></pre></td></tr></table></figure>
+<h1 id="代码生成工具"><a href="#代码生成工具" class="headerlink" title="代码生成工具"></a>代码生成工具</h1><p>用于在项目开发过程中生成mapper, mapper xml, dao, service, controller等基础代码，让开发人员不必花费过多的时间在这些基础代码的开发上。</p>
+<p>目前生成的是微服务架构代码格式，如果需要MVC风格代码，忽略掉*-client-starter模块的内容即可。</p>
+<p><a href="https://github.com/forvoyager/code-generator" target="_blank" rel="noopener">先贴代码……</a></p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><h2 id="代码信息配置"><a href="#代码信息配置" class="headerlink" title="代码信息配置"></a>代码信息配置</h2><p>在<a href="https://github.com/forvoyager/code-generator/blob/master/src/main/java/com/xr/code/generate/CodeGenerator.java" target="_blank" rel="noopener">CodeGenerator类</a>中按照项目/模块的需要，配置好项目信息、作者信息及数据库信息，然后添加需要生成基础代码的表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目名称</span></span><br><span class="line">String projectName = <span class="string">"micro_service"</span>;</span><br><span class="line"><span class="comment">// 基础包名</span></span><br><span class="line">String basePackageName = <span class="string">"com.xr"</span>;</span><br><span class="line"><span class="comment">// 模块名称</span></span><br><span class="line">String moduleName = <span class="string">"account"</span>;</span><br><span class="line"><span class="comment">// 模块名前缀</span></span><br><span class="line">String modulePrefix = <span class="string">"ms-"</span>;</span><br><span class="line"><span class="comment">// 作者</span></span><br><span class="line">String author = <span class="string">"forvoyager@outlook.com"</span>;</span><br><span class="line"><span class="comment">// 代码存放路径</span></span><br><span class="line">String outputPath = <span class="string">"./code"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库配置</span></span><br><span class="line">String url = <span class="string">"jdbc:mysql://localhost:3306/ms_account_db?characterEncoding=UTF-8"</span>;</span><br><span class="line">String driver = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">String username = <span class="string">"root"</span>;</span><br><span class="line">String password = <span class="string">"123456"</span>;</span><br><span class="line"><span class="comment">// 需要去掉的表前缀</span></span><br><span class="line">String skipTablePrefix = <span class="string">"ms_"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要生成代码的表</span></span><br><span class="line">List&lt;String&gt; tables = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">tables.add(<span class="string">"ms_account"</span>);</span><br><span class="line">tables.add(<span class="string">"ms_user_level"</span>);</span><br></pre></td></tr></table></figure>
 
-<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>这个过程就不赘述了，见<a href="https://git-scm.com/" target="_blank" rel="noopener">官方文档</a>，安装完成后执行下面命令验证是否安装成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;git --version</span><br><span class="line">git version 2.12.2.windows.2</span><br></pre></td></tr></table></figure>
-
-<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>按顺序执行下面命令，进行安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p><font color="red">注</font>：blog是文件夹名字，根据需要自行修改。</p>
-<p>按照上面步骤操作，没有报错，正常安装完成后，访问下面地址，能打开说明安装成功。<br><a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
-<p>blog目录中的文件及目录结构（只列了第一级目录）如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">E:\blog</span><br><span class="line">│</span><br><span class="line">├─node_modules</span><br><span class="line">├─public</span><br><span class="line">├─scaffolds</span><br><span class="line">├─source</span><br><span class="line">├─themes</span><br><span class="line">├─config.yml</span><br><span class="line">├─db.json</span><br><span class="line">├─package.json</span><br><span class="line">└─package-lock.json</span><br></pre></td></tr></table></figure>
-
-<h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><p>默认的主题有点丑，换一个主题吧，以<a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">hexo-theme-yilia</a>主题为例，<a href="https://github.com/search?q=hexo+theme" target="_blank" rel="noopener">更多主题……</a></p>
-<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><p>操作步骤如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blog/themes</span><br><span class="line">hexo clean</span><br><span class="line">git clone https://github.com/litten/hexo-theme-yilia.git yilia</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改blog目录下的_config.yml配置文件。</p>
+<p><font color="red">注</font>：</p>
 <ol>
-<li>将theme属性，设置为yilia。</li>
-<li>在文件最后添加如下配置，显示文章目录。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jsonContent:</span><br><span class="line">  meta: false</span><br><span class="line">  pages: false</span><br><span class="line">  posts:</span><br><span class="line">    title: true</span><br><span class="line">    date: true</span><br><span class="line">    path: true</span><br><span class="line">    text: false</span><br><span class="line">    raw: false</span><br><span class="line">    content: false</span><br><span class="line">    slug: false</span><br><span class="line">    updated: false</span><br><span class="line">    comments: false</span><br><span class="line">    link: false</span><br><span class="line">    permalink: false</span><br><span class="line">    excerpt: false</span><br><span class="line">    categories: false</span><br><span class="line">    tags: true</span><br></pre></td></tr></table></figure>
+<li>表及字段信息会从数据库获取，所以建表要规范，相关备注、默认值等配置好。</li>
+<li>表名中如果有下划线，会转换为驼峰命名规则，如表：ms_funds_data生成的代码形如FundsDataModel，字段名不受此影响。</li>
+</ol>
+<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>执行com.xr.code.generate.CodeGenerator类，会在指定路径（默认是在当前项目路径下）生成代码文件。</p>
+<h2 id="最终生成的代码样例"><a href="#最终生成的代码样例" class="headerlink" title="最终生成的代码样例"></a>最终生成的代码样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">micro_service</span><br><span class="line">  └─ms-account</span><br><span class="line">      ├─ms-account-client-starter</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─client</span><br><span class="line">      │                                  AccountClient.java</span><br><span class="line">      │                                  UserLevelClient.java</span><br><span class="line">      │</span><br><span class="line">      ├─ms-account-common</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─common</span><br><span class="line">      │                              ├─controller</span><br><span class="line">      │                              │      IAccountController.java</span><br><span class="line">      │                              │      IUserLevelController.java</span><br><span class="line">      │                              │</span><br><span class="line">      │                              └─model</span><br><span class="line">      │                                      AccountModel.java</span><br><span class="line">      │                                      UserLevelModel.java</span><br><span class="line">      │</span><br><span class="line">      └─ms-account-service</span><br><span class="line">          └─src</span><br><span class="line">              └─main</span><br><span class="line">                  ├─java</span><br><span class="line">                  │  └─com</span><br><span class="line">                  │      └─xr</span><br><span class="line">                  │          └─account</span><br><span class="line">                  │              ├─controller</span><br><span class="line">                  │              │      AccountController.java</span><br><span class="line">                  │              │      UserLevelController.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              ├─mapper</span><br><span class="line">                  │              │      AccountMapper.java</span><br><span class="line">                  │              │      UserLevelMapper.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              └─service</span><br><span class="line">                  │                  │  IAccountService.java</span><br><span class="line">                  │                  │  IUserLevelService.java</span><br><span class="line">                  │                  │</span><br><span class="line">                  │                  └─impl</span><br><span class="line">                  │                          AccountServiceImpl.java</span><br><span class="line">                  │                          UserLevelServiceImpl.java</span><br><span class="line">                  │</span><br><span class="line">                  └─resources</span><br><span class="line">                      └─mybatis</span><br><span class="line">                          └─mapper</span><br><span class="line">                                  account.xml</span><br><span class="line">                                  userLevel.xml</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h2><ul>
+<li><p>默认所有表都有如下三个字段</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create_time 创建时间</span><br><span class="line">update_time 最后修改时间</span><br><span class="line">version 数据版本号（用于乐观锁实现）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有表的更新操作，版本号自动++</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `table` SET version = version + 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目中如下路径的文件是代码模板文件，按需调整。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/tpl</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目中如下路径的文件是mybatis基础配置文件，按需调整。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/mybatis</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目中如下路径的文件是mapper和service的基础文件，按需调整。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/java/com/xr/base/core/service</span><br></pre></td></tr></table></figure>
 
 </li>
-</ol>
-<p>生成目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-generator-json-content --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="验证主题"><a href="#验证主题" class="headerlink" title="验证主题"></a>验证主题</h3><p>启动本地web服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>访问<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>，查看新主题效果。</p>
-<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p>文章是markdown文档</p>
-<ol>
-<li>创建文章<br>执行命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章标题&quot;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>然后会在source/_posts路径下生成markdown文件。<br>写文章就是按markdown语法编辑此文件。  </p>
-<p>如果文章太长，可以在文章中任意你想截断的位置加上如下描述：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
-
-<p>文章会在此处截断，文章列表页显示截断之前的内容，点击“查看全文”后显示全部内容。</p>
-<h1 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h1><h2 id="创建github账户并配置"><a href="#创建github账户并配置" class="headerlink" title="创建github账户并配置"></a>创建github账户并配置</h2><ol>
-<li>注册账号，<a href="https://github.com/" target="_blank" rel="noopener">传送门……</a></li>
-<li>创建仓库<br> Repository name必须是这种形式：{username}.github.io </li>
-<li>配置hexo<br> 修改blog目录下的_config.yml配置文件中的deploy项为如下形式： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">   type: git </span><br><span class="line">   repo: &#123;上面创建的仓库地址，如：https://github.com/username/username.github.io.git&#125;</span><br><span class="line">   branch: master</span><br><span class="line">   message: &quot;git commit时的备注信息，自行调整&quot;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>执行下面命令，发布博客，其实就是生成博客页面，然后上传到github仓库中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>提交过程中会提示输入github用户名和密码。</p>
-<h1 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h1><p><a href="https://forvoyager.github.io/">传送门</a></p>
+</ul>
 
       
 
@@ -268,7 +245,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未分类</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
         		</li>
       		
 		</ul>
@@ -324,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/13/1、github-hexo构建个人博客/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/14/2-代码生成器/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,15 +315,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/14/2、代码生成器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/17/3-别让手机偷走孩子的注意力/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2、代码生成器
+          3.别让手机偷走孩子的注意力
         
       </div>
     </a>
   
+  
+    <a href="/2019/06/13/1-github-hexo构建个人博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1.github+hexo构建个人博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -371,7 +353,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Node-js"><span class="toc-number">1.</span> <span class="toc-text">安装Node.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Git"><span class="toc-number">2.</span> <span class="toc-text">安装Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Hexo"><span class="toc-number">3.</span> <span class="toc-text">安装Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题设置"><span class="toc-number">3.2.</span> <span class="toc-text">主题设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载主题"><span class="toc-number">3.2.1.</span> <span class="toc-text">下载主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改配置"><span class="toc-number">3.2.2.</span> <span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证主题"><span class="toc-number">3.2.3.</span> <span class="toc-text">验证主题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写文章"><span class="toc-number">4.</span> <span class="toc-text">写文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发布博客"><span class="toc-number">5.</span> <span class="toc-text">发布博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建github账户并配置"><span class="toc-number">5.1.</span> <span class="toc-text">创建github账户并配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布"><span class="toc-number">5.2.</span> <span class="toc-text">发布</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问博客"><span class="toc-number">6.</span> <span class="toc-text">访问博客</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码生成工具"><span class="toc-number">1.</span> <span class="toc-text">代码生成工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用方法"><span class="toc-number">2.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码信息配置"><span class="toc-number">2.1.</span> <span class="toc-text">代码信息配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成代码"><span class="toc-number">2.2.</span> <span class="toc-text">生成代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终生成的代码样例"><span class="toc-number">2.3.</span> <span class="toc-text">最终生成的代码样例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些约定"><span class="toc-number">3.1.</span> <span class="toc-text">一些约定</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -483,11 +465,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">

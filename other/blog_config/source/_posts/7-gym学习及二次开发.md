@@ -1,5 +1,5 @@
 ---
-title: 7、gym学习及二次开发
+title: 7.gym学习及二次开发
 brief: 机器学习
 key: ''
 tags:

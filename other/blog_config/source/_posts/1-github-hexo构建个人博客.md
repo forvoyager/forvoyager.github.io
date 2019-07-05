@@ -1,5 +1,5 @@
 ---
-title: 1、github+hexo构建个人博客
+title: 1.github+hexo构建个人博客
 brief: 副标题
 key: "github+hexo,个人博客"
 date: 2019-06-13 14:12:45

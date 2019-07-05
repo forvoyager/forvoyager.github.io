@@ -1,5 +1,5 @@
 ---
-title: 6、Understanding LSTM Networks
+title: 6.Understanding LSTM Networks
 brief: 副标题
 key: ''
 tags:
