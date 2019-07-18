@@ -6,16 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>Archives | 星空日记</title>
+  <title>8.python性能分析之函数执行时间 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JAVA,AI,ML">
-<meta property="og:type" content="website">
-<meta property="og:title" content="星空日记">
-<meta property="og:url" content="http://forvoyager.github.io/archives/index.html">
+  <meta name="description" content="统计python执行过程中的耗时情况……">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.python性能分析之函数执行时间">
+<meta property="og:url" content="http://forvoyager.github.io/2019/07/18/8-python性能分析之函数执行时间/index.html">
 <meta property="og:site_name" content="星空日记">
+<meta property="og:description" content="统计python执行过程中的耗时情况……">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://forvoyager.github.io/pic/8/1.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/8/2.jpg">
+<meta property="og:updated_time" content="2019-07-18T10:07:28.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="星空日记">
+<meta name="twitter:title" content="8.python性能分析之函数执行时间">
+<meta name="twitter:description" content="统计python执行过程中的耗时情况……">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/8/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -171,36 +178,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-8-python性能分析之函数执行时间" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/18/8-python性能分析之函数执行时间/" class="archive-article-date">
-  	<time datetime="2019-07-18T02:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/8-python性能分析之函数执行时间/">8.python性能分析之函数执行时间</a>
+    <h1 class="article-title" itemprop="name">
+      8.python性能分析之函数执行时间
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/18/8-python性能分析之函数执行时间/" class="archive-article-date">
+  	<time datetime="2019-07-18T02:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>统计python执行过程中的耗时情况……<br><img src="/pic/8/1.jpg" alt></p>
+<a id="more"></a>
+
+<h1 id="生成性能分析文件"><a href="#生成性能分析文件" class="headerlink" title="生成性能分析文件"></a>生成性能分析文件</h1><p>用cProfile（Python默认的性能分析器）生成性能分析文件，命令格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cProfile -o result.cprofile your_python_file.py [parameters]</span><br></pre></td></tr></table></figure>
+
+<p>如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cProfile -o result.cprofile exe_pre.py -r 600549</span><br></pre></td></tr></table></figure>
+
+<p>最后会在当前路径下生成一个result.cprofile的分析文件。</p>
+<h1 id="可视化分析文件"><a href="#可视化分析文件" class="headerlink" title="可视化分析文件"></a>可视化分析文件</h1><p>可选的可视化工具比较多，如gprof2dot、Matlab、snakeviz等。以snakeviz为例：</p>
+<h3 id="安装snakeviz"><a href="#安装snakeviz" class="headerlink" title="安装snakeviz"></a>安装snakeviz</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install snakeviz</span><br></pre></td></tr></table></figure>
+
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snakeviz result.cprofile</span><br></pre></td></tr></table></figure>
+
+<p>效果如图，风格自选：<br><img src="/pic/8/2.jpg" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,297 +233,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/07/18/8-python性能分析之函数执行时间/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/05/7-gym学习及二次开发/" class="archive-article-date">
-  	<time datetime="2019-07-05T03:23:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/05/7-gym学习及二次开发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">7.gym学习及二次开发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/05/7-gym学习及二次开发/">7.gym学习及二次开发</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#生成性能分析文件"><span class="toc-number">1.</span> <span class="toc-text">生成性能分析文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#可视化分析文件"><span class="toc-number">2.</span> <span class="toc-text">可视化分析文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装snakeviz"><span class="toc-number">2.0.1.</span> <span class="toc-text">安装snakeviz</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可视化"><span class="toc-number">2.0.2.</span> <span class="toc-text">可视化</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/03/6-Understanding-LSTM-Networks/" class="archive-article-date">
-  	<time datetime="2019-07-03T01:16:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/03/6-Understanding-LSTM-Networks/">6.Understanding LSTM Networks</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/27/5-如何设计高可用的分布式锁/" class="archive-article-date">
-  	<time datetime="2019-06-27T03:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/27/5-如何设计高可用的分布式锁/">5.如何设计高可用的分布式锁</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/26/4-聊一聊分布式锁的设计/" class="archive-article-date">
-  	<time datetime="2019-06-26T01:34:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/26/4-聊一聊分布式锁的设计/">4.聊一聊分布式锁的设计</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/17/3-别让手机偷走孩子的注意力/" class="archive-article-date">
-  	<time datetime="2019-06-17T01:12:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/17/3-别让手机偷走孩子的注意力/">3.别让手机偷走孩子的注意力</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/14/2-代码生成器/" class="archive-article-date">
-  	<time datetime="2019-06-14T09:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/14/2-代码生成器/">2.代码生成器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/13/1-github-hexo构建个人博客/" class="archive-article-date">
-  	<time datetime="2019-06-13T06:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/13/1-github-hexo构建个人博客/">1.github+hexo构建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -525,8 +368,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
