@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>2.代码生成器 | 星空日记</title>
+  <title>9.如何找到最耗时的java线程？ | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="节省时间去陪老婆，就靠你了……">
-<meta name="keywords" content="JAVA">
+  <meta name="keywords" content="JAVA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2.代码生成器">
-<meta property="og:url" content="http://forvoyager.github.io/2019/06/14/2-代码生成器/index.html">
+<meta property="og:title" content="9.如何找到最耗时的java线程？">
+<meta property="og:url" content="http://forvoyager.github.io/2019/07/19/9-如何找到最耗时的java线程？/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="节省时间去陪老婆，就靠你了……">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
-<meta property="og:updated_time" content="2019-07-05T09:40:54.095Z">
+<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/d2.jpg">
+<meta property="og:updated_time" content="2019-07-19T06:32:16.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2.代码生成器">
-<meta name="twitter:description" content="节省时间去陪老婆，就靠你了……">
-<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
+<meta name="twitter:title" content="9.如何找到最耗时的java线程？">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/d2.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -183,61 +180,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2-代码生成器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-9-如何找到最耗时的java线程？" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2.代码生成器
+      9.如何找到最耗时的java线程？
     </h1>
   
 
         
-        <a href="/2019/06/14/2-代码生成器/" class="archive-article-date">
-  	<time datetime="2019-06-14T09:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
+        <a href="/2019/07/19/9-如何找到最耗时的java线程？/" class="archive-article-date">
+  	<time datetime="2019-07-19T05:32:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>节省时间去陪老婆，就靠你了……<br><img src="/pic/unclassified/codegen-cover.png" alt></p>
+        <p><img src="/pic/unclassified/d2.jpg" alt></p>
 <a id="more"></a>
 
-<h1 id="代码生成工具"><a href="#代码生成工具" class="headerlink" title="代码生成工具"></a>代码生成工具</h1><p>用于在项目开发过程中生成mapper, mapper xml, dao, service, controller等基础代码，让开发人员不必花费过多的时间在这些基础代码的开发上。</p>
-<p>目前生成的是微服务架构代码格式，如果需要MVC风格代码，忽略掉*-client-starter模块的内容即可。</p>
-<p><a href="https://github.com/forvoyager/code-generator" target="_blank" rel="noopener">先贴代码……</a></p>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><h2 id="代码信息配置"><a href="#代码信息配置" class="headerlink" title="代码信息配置"></a>代码信息配置</h2><p>在<a href="https://github.com/forvoyager/code-generator/blob/master/src/main/java/com/xr/code/generate/CodeGenerator.java" target="_blank" rel="noopener">CodeGenerator类</a>中按照项目/模块的需要，配置好项目信息、作者信息及数据库信息，然后添加需要生成基础代码的表。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目名称</span></span><br><span class="line">String projectName = <span class="string">"micro_service"</span>;</span><br><span class="line"><span class="comment">// 基础包名</span></span><br><span class="line">String basePackageName = <span class="string">"com.xr"</span>;</span><br><span class="line"><span class="comment">// 模块名称</span></span><br><span class="line">String moduleName = <span class="string">"account"</span>;</span><br><span class="line"><span class="comment">// 模块名前缀</span></span><br><span class="line">String modulePrefix = <span class="string">"ms-"</span>;</span><br><span class="line"><span class="comment">// 作者</span></span><br><span class="line">String author = <span class="string">"forvoyager@outlook.com"</span>;</span><br><span class="line"><span class="comment">// 代码存放路径</span></span><br><span class="line">String outputPath = <span class="string">"./code"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库配置</span></span><br><span class="line">String url = <span class="string">"jdbc:mysql://localhost:3306/ms_account_db?characterEncoding=UTF-8"</span>;</span><br><span class="line">String driver = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">String username = <span class="string">"root"</span>;</span><br><span class="line">String password = <span class="string">"123456"</span>;</span><br><span class="line"><span class="comment">// 需要去掉的表前缀</span></span><br><span class="line">String skipTablePrefix = <span class="string">"ms_"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要生成代码的表</span></span><br><span class="line">List&lt;String&gt; tables = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">tables.add(<span class="string">"ms_account"</span>);</span><br><span class="line">tables.add(<span class="string">"ms_user_level"</span>);</span><br></pre></td></tr></table></figure>
+<p>如何找到最耗时的java线程？</p>
+<h2 id="找到JAVA进程pid"><a href="#找到JAVA进程pid" class="headerlink" title="找到JAVA进程pid"></a>找到JAVA进程pid</h2><p>得先找到目标进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep java</span><br><span class="line">或者</span><br><span class="line">jps -mlv</span><br></pre></td></tr></table></figure>
 
-<p><font color="red">注</font>：</p>
-<ol>
-<li>表及字段信息会从数据库获取，所以建表要规范，相关备注、默认值等配置好。</li>
-<li>表名中如果有下划线，会转换为驼峰命名规则，如表：ms_funds_data生成的代码形如FundsDataModel，字段名不受此影响。</li>
-</ol>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>执行com.xr.code.generate.CodeGenerator类，会在指定路径（默认是在当前项目路径下）生成代码文件。</p>
-<h2 id="最终生成的代码样例"><a href="#最终生成的代码样例" class="headerlink" title="最终生成的代码样例"></a>最终生成的代码样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">micro_service</span><br><span class="line">  └─ms-account</span><br><span class="line">      ├─ms-account-client-starter</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─client</span><br><span class="line">      │                                  AccountClient.java</span><br><span class="line">      │                                  UserLevelClient.java</span><br><span class="line">      │</span><br><span class="line">      ├─ms-account-common</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─common</span><br><span class="line">      │                              ├─controller</span><br><span class="line">      │                              │      IAccountController.java</span><br><span class="line">      │                              │      IUserLevelController.java</span><br><span class="line">      │                              │</span><br><span class="line">      │                              └─model</span><br><span class="line">      │                                      AccountModel.java</span><br><span class="line">      │                                      UserLevelModel.java</span><br><span class="line">      │</span><br><span class="line">      └─ms-account-service</span><br><span class="line">          └─src</span><br><span class="line">              └─main</span><br><span class="line">                  ├─java</span><br><span class="line">                  │  └─com</span><br><span class="line">                  │      └─xr</span><br><span class="line">                  │          └─account</span><br><span class="line">                  │              ├─controller</span><br><span class="line">                  │              │      AccountController.java</span><br><span class="line">                  │              │      UserLevelController.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              ├─mapper</span><br><span class="line">                  │              │      AccountMapper.java</span><br><span class="line">                  │              │      UserLevelMapper.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              └─service</span><br><span class="line">                  │                  │  IAccountService.java</span><br><span class="line">                  │                  │  IUserLevelService.java</span><br><span class="line">                  │                  │</span><br><span class="line">                  │                  └─impl</span><br><span class="line">                  │                          AccountServiceImpl.java</span><br><span class="line">                  │                          UserLevelServiceImpl.java</span><br><span class="line">                  │</span><br><span class="line">                  └─resources</span><br><span class="line">                      └─mybatis</span><br><span class="line">                          └─mapper</span><br><span class="line">                                  account.xml</span><br><span class="line">                                  userLevel.xml</span><br></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root     102945 100545  0 13:44 pts/0    00:00:00 grep --color=auto java</span><br><span class="line">root     123398      1  0 7月18 ?       00:04:26 java -jar ./jar/p-discovery.jar</span><br><span class="line">root     123584      1  0 7月18 ?       00:03:33 java -jar ./jar/p-config-service.jar</span><br><span class="line">root     124627      1  1 7月18 ?       00:20:17 java -jar ./jar/p-invest-service.jar</span><br></pre></td></tr></table></figure>
 
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h2><ul>
-<li><p>默认所有表都有如下三个字段</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create_time 创建时间</span><br><span class="line">update_time 最后修改时间</span><br><span class="line">version 数据版本号（用于乐观锁实现）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所有表的更新操作，版本号自动++</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `table` SET version = version + 1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是代码模板文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/tpl</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是mybatis基础配置文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/mybatis</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是mapper和service的基础文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/java/com/xr/base/core/service</span><br></pre></td></tr></table></figure>
+<p>第二列就是pid</p>
+<h2 id="找到线程中最耗时的线程TID"><a href="#找到线程中最耗时的线程TID" class="headerlink" title="找到线程中最耗时的线程TID"></a>找到线程中最耗时的线程TID</h2><p>命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -Hp pid</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
+<p>本例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">top -Hp 123584</span><br><span class="line"></span><br><span class="line">结果如下：</span><br><span class="line">top - 13:49:20 up 158 days,  1:52,  2 users,  load average: 0.34, 0.20, 0.16</span><br><span class="line">Threads:  63 total,   0 running,  63 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu(s):  0.4 us,  1.0 sy,  0.0 ni, 98.4 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem : 32528944 total,   252228 free, 28587204 used,  3689512 buff/cache</span><br><span class="line">KiB Swap: 16777212 total, 14890172 free,  1887040 used.  3287160 avail Mem</span><br><span class="line"></span><br><span class="line">   PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND</span><br><span class="line">123584 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:00.00 java</span><br><span class="line">123601 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:21.79 java</span><br><span class="line">123602 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:23.72 java</span><br><span class="line">123605 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:38.36 java</span><br><span class="line">123626 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:01.59 java</span><br><span class="line">123627 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:00.00 java</span><br><span class="line">123629 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:18.94 java</span><br><span class="line">123684 root      20   0 13.583g 1.136g  13268 S  0.0  3.7   0:00.39 java</span><br></pre></td></tr></table></figure>
+
+<p>找到最耗时的tid，转成16进制，如上面的123605耗时比较大</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">printf &quot;%x\n&quot; 123605</span><br><span class="line"></span><br><span class="line">结果为：1e2d5</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印线程栈信息"><a href="#打印线程栈信息" class="headerlink" title="打印线程栈信息"></a>打印线程栈信息</h2><p>得到上面的信息后，就可以找到目标：耗时长的线程。命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [pid] | grep [tid16进制]</span><br></pre></td></tr></table></figure>
+
+<p>本例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jstack 123584 | grep 1e2d5</span><br><span class="line"></span><br><span class="line">结果如下：</span><br><span class="line">&quot;SimplePauseDetectorThread_0&quot; #20 daemon prio=9 os_prio=0 tid=0x00007f9cac059000 nid=0x1e2ed waiting on condition [0x00007f9cbc8c1000]</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong><br>实际过程中，这个命令需要多执行几次，观察栈的变化才能真正的确认问题。</p>
 
       
 
@@ -307,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/14/2-代码生成器/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/07/19/9-如何找到最耗时的java线程？/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +310,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/17/3-别让手机偷走孩子的注意力/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          3.别让手机偷走孩子的注意力
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/13/1-github-hexo构建个人博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1.github+hexo构建个人博客</div>
+    <a href="/2019/07/18/8-python性能分析之函数执行时间/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">8.python性能分析之函数执行时间</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +339,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码生成工具"><span class="toc-number">1.</span> <span class="toc-text">代码生成工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用方法"><span class="toc-number">2.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码信息配置"><span class="toc-number">2.1.</span> <span class="toc-text">代码信息配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成代码"><span class="toc-number">2.2.</span> <span class="toc-text">生成代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终生成的代码样例"><span class="toc-number">2.3.</span> <span class="toc-text">最终生成的代码样例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些约定"><span class="toc-number">3.1.</span> <span class="toc-text">一些约定</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#找到JAVA进程pid"><span class="toc-number">1.</span> <span class="toc-text">找到JAVA进程pid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#找到线程中最耗时的线程TID"><span class="toc-number">2.</span> <span class="toc-text">找到线程中最耗时的线程TID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打印线程栈信息"><span class="toc-number">3.</span> <span class="toc-text">打印线程栈信息</span></a></li></ol>
                     </div>
                 </span>
             </div>
