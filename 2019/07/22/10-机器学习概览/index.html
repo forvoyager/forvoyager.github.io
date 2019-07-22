@@ -6,16 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>Tag: 分布式 | 星空日记</title>
+  <title>10.机器学习概览 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JAVA,AI,ML">
-<meta property="og:type" content="website">
-<meta property="og:title" content="星空日记">
-<meta property="og:url" content="http://forvoyager.github.io/tags/分布式/index.html">
+  <meta name="description" content="机器学习的来龙去脉……">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.机器学习概览">
+<meta property="og:url" content="http://forvoyager.github.io/2019/07/22/10-机器学习概览/index.html">
 <meta property="og:site_name" content="星空日记">
+<meta property="og:description" content="机器学习的来龙去脉……">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/1.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/2.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/3.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/supervised_learning.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/4.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/10/unsupervised_learning.jpg">
+<meta property="og:updated_time" content="2019-07-22T05:09:46.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="星空日记">
+<meta name="twitter:title" content="10.机器学习概览">
+<meta name="twitter:description" content="机器学习的来龙去脉……">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/10/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -177,106 +188,230 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-10-机器学习概览" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/27/5-如何设计高可用的分布式锁/" class="archive-article-date">
-  	<time datetime="2019-06-27T03:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/27/5-如何设计高可用的分布式锁/">5.如何设计高可用的分布式锁</a>
+    <h1 class="article-title" itemprop="name">
+      10.机器学习概览
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/22/10-机器学习概览/" class="archive-article-date">
+  	<time datetime="2019-07-22T02:02:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/pic/10/1.jpg" alt><br>机器学习的来龙去脉……</p>
+<a id="more"></a>
+
+<h1 id="机器学习的定义"><a href="#机器学习的定义" class="headerlink" title="机器学习的定义"></a>机器学习的定义</h1><p><a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" rel="noopener">Wikipedia有言</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**Machine learning (ML)** is the scientific study of algorithms and statistical models that computer systems use in order to perform a specific task effectively without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence.</span><br></pre></td></tr></table></figure>
+
+<p>大意：<br>机器学习（ML）是对计算机系统使用的算法和统计模型的科学研究，以便有效地执行特定任务而不使用明确的指令，而是依赖于模式和推理。它被视为人工智能的一个子集。</p>
+<p><a href="https://baike.baidu.com/link?url=yW_RNOB9ECKwyN8TRo6OHUr20g0_ra7GrslnOUPNXsgre6RI9QNXGD6V2MWQs1QT5U-0ST1s2PgGfl4H_BTueLHwF9EaWAXuXNbLGDFdqp48mja3gvf1nDuF_AKZ0g3A" target="_blank" rel="noopener">百度百科</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">机器学习(Machine Learning, ML)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。</span><br></pre></td></tr></table></figure>
+
+<p>总的来说，就是：<br><img src="/pic/10/2.png" alt></p>
+<h1 id="机器学习的历史"><a href="#机器学习的历史" class="headerlink" title="机器学习的历史"></a>机器学习的历史</h1><p>详情请参考<strong>链接3</strong></p>
+<h2 id="1980-年代"><a href="#1980-年代" class="headerlink" title="1980 年代"></a>1980 年代</h2><ul>
+<li>主导流派：符号主义</li>
+<li>架构：服务器或大型机</li>
+<li>主导理论：知识工程</li>
+<li>基本决策逻辑：决策支持系统，实用性有限</li>
+</ul>
+<h2 id="1990-年代到-2000-年"><a href="#1990-年代到-2000-年" class="headerlink" title="1990 年代到 2000 年"></a>1990 年代到 2000 年</h2><ul>
+<li>主导流派：贝叶斯</li>
+<li>架构：小型服务器集群</li>
+<li>主导理论：概率论</li>
+<li>分类：可扩展的比较或对比，对许多任务都足够好了</li>
+</ul>
+<h2 id="2010-年代早期到中期"><a href="#2010-年代早期到中期" class="headerlink" title="2010 年代早期到中期"></a>2010 年代早期到中期</h2><ul>
+<li>主导流派：联结主义</li>
+<li>架构：大型服务器农场</li>
+<li>主导理论：神经科学和概率</li>
+<li>识别：更加精准的图像和声音识别、翻译、情绪分析等</li>
+</ul>
+<h2 id="2010-年代末期"><a href="#2010-年代末期" class="headerlink" title="2010 年代末期"></a>2010 年代末期</h2><ul>
+<li>主导流派：联结主义+符号主义</li>
+<li>架构：许多云</li>
+<li>主导理论：记忆神经网络、大规模集成、基于知识的推理</li>
+<li>简单的问答：范围狭窄的、领域特定的知识共享</li>
+</ul>
+<h2 id="2020-年代"><a href="#2020-年代" class="headerlink" title="2020 年代+"></a>2020 年代+</h2><ul>
+<li>主导流派：联结主义+符号主义+贝叶斯+……</li>
+<li>架构：云计算和雾计算</li>
+<li>主导理论：感知的时候有网络，推理和工作的时候有规则</li>
+<li>简单感知、推理和行动：有限制的自动化或人机交互</li>
+</ul>
+<h2 id="2040-年代"><a href="#2040-年代" class="headerlink" title="2040 年代+"></a>2040 年代+</h2><ul>
+<li>主导流派：算法融合</li>
+<li>架构：无处不在的服务器</li>
+<li>主导理论：最佳组合的元学习</li>
+<li>感知和响应：基于通过多种学习方式获得的知识或经验采取行动或做出回答</li>
+</ul>
+<h1 id="机器学习的分类"><a href="#机器学习的分类" class="headerlink" title="机器学习的分类"></a>机器学习的分类</h1><p>慢慢体会……<br><img src="/pic/10/3.jpg" alt></p>
+<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>根据已知的输入和输出训练模型，让模型能够预测未来输出。</p>
+<p>监督式机器学习能够根据已有的包含不确定性的数据建立一个预测模型。监督式学习算法接受已知的输入数据集（包含预测变量）和对该数据集的已知响应（输出，响应变量），然后训练模型，使模型能够对新输入数据的响应做出合理的预测。如果您尝试去预测已知数据的输出，则使用监督式学习。</p>
+<p>监督式学习采用分类和回归技术开发预测模型。<br><img src="/pic/10/supervised_learning.jpg" alt></p>
+<p>具体算法的适用范围<br><img src="/pic/10/4.png" alt></p>
+<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p>回归技术可预测连续的响应。例如，温度的变化或电力需求中的波动。典型的应用包括电力系统负荷预测和算法交易。</p>
+<p>常用的回归算法主要有：线性模型、非线性模型、规则化、逐步回归、提升 (boosted) 和袋装 (bagged) 决策树、神经网络和自适应神经模糊学习。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>分类可预测离散的响应。例如，电子邮件是不是垃圾邮件，肿瘤是恶性还是良性的。分类模型可将输入数据划分成不同类别。典型的应用包括医学成像、语音识别和信用评估。</p>
+<p>常用的分类算法主要有：支持向量机 (SVM)、提升 (boosted) 决策树和袋装 (bagged) 决策树、k-最近邻、朴素贝叶斯 (Naïve Bayes)、判别分析、逻辑回归和神经网络。</p>
+<h2 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h2><p>无监督学习可发现数据中隐藏的模式或内在结构。这种技术可根据未做标记的输入数据集得到推论。</p>
+<p><img src="/pic/10/unsupervised_learning.jpg" alt></p>
+<h1 id="机器学习应用"><a href="#机器学习应用" class="headerlink" title="机器学习应用"></a>机器学习应用</h1><ul>
+<li>计算金融学，用于信用评估和算法交易</li>
+<li>图像处理和计算机视觉，用于人脸识别、运动检测和对象检测</li>
+<li>计算生物学，用于肿瘤检测、药物发现和 DNA 序列分析</li>
+<li>能源生产，用于预测价格和负载</li>
+<li>汽车、航空航天和制造业，用于预见性维护</li>
+<li>自然语言处理，用于语音识别应用</li>
+</ul>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><ol>
+<li><a href="http://usblogs.pwc.com/emerging-technology/a-look-at-machine-learning-infographic/" target="_blank" rel="noopener">http://usblogs.pwc.com/emerging-technology/a-look-at-machine-learning-infographic/</a></li>
+<li><a href="http://usblogs.pwc.com/emerging-technology/machine-learning-methods-infographic/" target="_blank" rel="noopener">http://usblogs.pwc.com/emerging-technology/machine-learning-methods-infographic/</a></li>
+<li><a href="http://usblogs.pwc.com/emerging-technology/machine-learning-evolution-infographic/" target="_blank" rel="noopener">http://usblogs.pwc.com/emerging-technology/machine-learning-evolution-infographic/</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/07/22/10-机器学习概览/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/26/4-聊一聊分布式锁的设计/" class="archive-article-date">
-  	<time datetime="2019-06-26T01:34:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/19/9-如何找到最耗时的java线程？/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">9.如何找到最耗时的java线程？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/26/4-聊一聊分布式锁的设计/">4.聊一聊分布式锁的设计</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#机器学习的定义"><span class="toc-number">1.</span> <span class="toc-text">机器学习的定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#机器学习的历史"><span class="toc-number">2.</span> <span class="toc-text">机器学习的历史</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1980-年代"><span class="toc-number">2.1.</span> <span class="toc-text">1980 年代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1990-年代到-2000-年"><span class="toc-number">2.2.</span> <span class="toc-text">1990 年代到 2000 年</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2010-年代早期到中期"><span class="toc-number">2.3.</span> <span class="toc-text">2010 年代早期到中期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2010-年代末期"><span class="toc-number">2.4.</span> <span class="toc-text">2010 年代末期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-年代"><span class="toc-number">2.5.</span> <span class="toc-text">2020 年代+</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2040-年代"><span class="toc-number">2.6.</span> <span class="toc-text">2040 年代+</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#机器学习的分类"><span class="toc-number">3.</span> <span class="toc-text">机器学习的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">3.1.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#回归"><span class="toc-number">3.1.1.</span> <span class="toc-text">回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">3.1.2.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无监督学习"><span class="toc-number">3.2.</span> <span class="toc-text">无监督学习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#机器学习应用"><span class="toc-number">4.</span> <span class="toc-text">机器学习应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链接"><span class="toc-number">5.</span> <span class="toc-text">链接</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -299,9 +434,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
