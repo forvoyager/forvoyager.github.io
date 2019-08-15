@@ -6,24 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>DQN从入门到放弃1-DQN与增强学习 | 星空日记</title>
+  <title>DQN从入门到放弃2-增强学习与MDP | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DQN与增强学习">
+  <meta name="description" content="增强学习与MDP">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DQN从入门到放弃1-DQN与增强学习">
-<meta property="og:url" content="http://forvoyager.github.io/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/index.html">
+<meta property="og:title" content="DQN从入门到放弃2-增强学习与MDP">
+<meta property="og:url" content="http://forvoyager.github.io/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="DQN与增强学习">
+<meta property="og:description" content="增强学习与MDP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
-<meta property="og:image" content="http://forvoyager.github.io/pic/11/1.jpg">
-<meta property="og:image" content="http://forvoyager.github.io/pic/11/2.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cpi+">
-<meta property="og:updated_time" content="2019-08-14T04:27:36.756Z">
+<meta property="og:updated_time" content="2019-08-15T05:32:31.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DQN从入门到放弃1-DQN与增强学习">
-<meta name="twitter:description" content="DQN与增强学习">
+<meta name="twitter:title" content="DQN从入门到放弃2-增强学习与MDP">
+<meta name="twitter:description" content="增强学习与MDP">
 <meta name="twitter:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
@@ -186,66 +183,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-11-DQN从入门到放弃1-DQN与增强学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-12-DQN从入门到放弃2-增强学习与MDP" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      DQN从入门到放弃1-DQN与增强学习
+      DQN从入门到放弃2-增强学习与MDP
     </h1>
   
 
         
-        <a href="/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/" class="archive-article-date">
-  	<time datetime="2019-08-14T03:14:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
+        <a href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" class="archive-article-date">
+  	<time datetime="2019-08-15T03:50:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/pic/11/bg.jpg" alt><br>DQN与增强学习</p>
+        <p><img src="/pic/11/bg.jpg" alt><br>增强学习与MDP</p>
 <a id="more"></a>
 
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>深度增强学习Deep Reinforcement Learning是将深度学习与增强学习结合起来从而实现从Perception感知到Action动作的端对端学习End-to-End Learning的一种全新的算法。简单的说，就是和人类一样，输入感知信息比如视觉，然后通过深度神经网络，直接输出动作，中间没有hand-crafted engineering的工作。深度增强学习具备使机器人实现真正完全自主的学习一种甚至多种技能的潜力。</p>
-<p>虽然将深度学习和增强学习结合的想法在几年前就有人尝试，但真正成功的开端就是DeepMind在NIPS 2013上发表的<strong><a href="https://link.zhihu.com/?target=http%3A//arxiv.org/abs/1312.5602" target="_blank" rel="noopener">Playing Atari with Deep Reinforcement Learning</a></strong>一文，在该文中第一次提出Deep Reinforcement Learning 这个名称，并且提出DQN（Deep Q-Network）算法，实现从纯图像输入完全通过学习来玩Atari游戏的成果。之后DeepMind在Nature上发表了改进版的DQN文章<strong>Human-level Control through Deep Reinforcement Learning</strong>，引起了广泛的关注，Deep Reinfocement Learning 从此成为深度学习领域的前沿研究方向。<br><img src="/pic/11/1.jpg" alt></p>
-<p>而Hinton，Bengio及Lecun三位大神在Nature上发表的<a href="https://link.zhihu.com/?target=http%3A//www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf" target="_blank" rel="noopener">Deep Learning综述</a>一文最后也将Deep Reinforcement Learning作为未来Deep Learning的发展方向。引用一下原文的说法：</p>
-<blockquote>
-<p>We expect much of the<br>future progress in vision to come from systems that are trained end-to-end<br>and combine ConvNets with RNNs that use reinforcement learning<br>to decide where to look.</p>
-</blockquote>
-<p>从上面的原文可见三位大神对于Deep Reinforcement Learning的期待。而显然这一年来的发展没有让大家失望，AlphaGo横空出世，将进一步推动Deep Reinforcement Learning的发展。</p>
-<p>Deep Reinforcement Learning的重要关键在于其具备真正实现AI的潜力，它使得计算机能够完全通过自学来掌握一项任务，甚至超过人类的水平。也因此，DeepMind很早受到了Google等企业的关注。DeepMind 50多人的团队在2014年就被Google以4亿美元的价格收购。而15年12月份刚刚由Elon Musk牵头成立的OpenAI，则一开始就获得了10亿美元的投资，而OpenAI中的好几位成员都来自UC Berkerley的Pieter Abbeel团队。</p>
-<p>Pieter Abbeel团队紧随DeepMind之后，采用基于引导式监督学习直接实现了机器人的End-to-End学习，其成果也引起了大量的媒体报道和广泛关注。去年的NIPS 2015 更是由Pieter Abbeel及DeepMind的David Silver联合组织了Deep Reinforcement Learning workshop。可以说，目前在Deep Reinforcement Learning取得开拓性进展的主要集中在DeepMind和UC Berkerley团队。</p>
-<p>为了研究Deep Reinforcement Learning，DQN的学习是首当其冲的。只有真正理解了DQN算法，才能说对Deep Reinforcement Learning入门。要理解并掌握DQN算法，需要增强学习和深度学习的多方面知识，笔者在2014年底开始接触DQN，但由于对基础知识掌握不全，导致竟然花了近1年的时间才真正理解DQN的整个算法。因此，本专栏从今天开始推出 <strong>DQN 从入门到放弃 系列</strong>文章，意在通过对增强学习，深度学习等基础知识的讲解，以及基于Tensorflow的代码实现，使大家能够扎实地从零开始理解DQN，入门Deep Reinforcement Learning。本系列文章将以一周一篇的速度更新。另外要说明的一点是DQN已被Google申请专利，因此只能做研究用，不能商用。</p>
-<h2 id="2-预备条件"><a href="#2-预备条件" class="headerlink" title="2 预备条件"></a>2 预备条件</h2><p>虽然说是从零开始，但是DQN毕竟也还属于深度学习领域的前沿算法，为了理解本系列的文章，知友们还是需要有一定的基础：</p>
+<h2 id="1-上文回顾"><a href="#1-上文回顾" class="headerlink" title="1 上文回顾"></a>1 上文回顾</h2><p>在上一篇文章<a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃 第一篇</a>中，我们回答了三个问题：</p>
 <ul>
-<li>一定的概率论和线性代数基础（数学基础）</li>
-<li>一定的Python编程基础（编程基础，后面的代码实现将完全基于Tensorflow实现）</li>
+<li>为什么研究深度增强学习？</li>
+<li>为什么研究DQN？</li>
+<li>什么是增强学习？</li>
 </ul>
-<p>考虑到目前理解深度学习的知友肯定比理解增强学习的知友多，并且专栏也在同步翻译CS231N的内容，本系列文章计划用极短的篇幅来介绍DQN所使用的深度学习知识，而用更多的篇幅介绍增强学习的知识。</p>
-<p>如果知友们具备以上的基本预备条件，那么我们就可以开始DQN学习之旅了。</p>
-<p>接下来本文将介绍增强学习的基础知识。</p>
-<h2 id="3-增强学习是什么"><a href="#3-增强学习是什么" class="headerlink" title="3 增强学习是什么"></a>3 增强学习是什么</h2><p>在人工智能领域，一般用<strong>智能体Agent</strong>来表示一个具备行为能力的物体，比如机器人，无人车，人等等。那么增强学习考虑的问题就是<strong>智能体Agent</strong>和<strong>环境Environment</strong>之间交互的任务。比如一个机械臂要拿起一个手机，那么机械臂周围的物体包括手机就是环境，机械臂通过外部的比如摄像头来感知环境，然后机械臂需要输出动作来实现拿起手机这个任务。再举玩游戏的例子，比如我们玩极品飞车游戏，我们只看到屏幕，这就是环境，然后我们输出动作（键盘操作）来控制车的运动。</p>
-<p>那么，不管是什么样的任务，都包含了一系列的<strong>动作Action</strong>,<strong>观察Observation</strong>还有<strong>反馈值Reward</strong>。所谓的Reward就是Agent执行了动作与环境进行交互后，环境会发生变化，变化的好与坏就用Reward来表示。如上面的例子。如果机械臂离手机变近了，那么Reward就应该是正的，如果玩赛车游戏赛车越来越偏离跑道，那么Reward就是负的。接下来这里用了Observation观察一词而不是环境那是因为Agent不一定能得到环境的所有信息，比如机械臂上的摄像头就只能得到某个特定角度的画面。因此，只能用Observation来表示Agent获取的感知信息。<br><img src="/pic/11/2.png" alt></p>
-<p>那么知道了整个过程，任务的目标就出来了，那就是要能获取尽可能多的Reward。没有目标，控制也就无从谈起，因此，获取Reward就是一个量化的标准，Reward越多，就表示执行得越好。每个时间片，Agent都是根据当前的观察来确定下一步的动作。观察Observation的集合就作为Agent的所处的<strong>状态State</strong>，因此，<strong>状态State</strong>和<strong>动作Action</strong>存在映射关系，也就是一个state可以对应一个action，或者对应不同动作的概率（常常用概率来表示，概率最高的就是最值得执行的动作）。状态与动作的关系其实就是输入与输出的关系，而状态State到动作Action的过程就称之为一个<strong>策略Policy，</strong>一般用<img src="https://www.zhihu.com/equation?tex=%5Cpi+" alt="[公式]">表示，也就是需要找到以下关系：</p>
-<p>$$ a=\pi(s) $$<br>或者<br>$$ \pi(a|s) $$</p>
-<p>其中a是action，s是state。第一种是一一对应的表示，第二种是概率的表示。</p>
+<p>那么在这一篇文章中，我们将进一步探讨增强学习的世界观以及随之而来的MDP马尔科夫决策过程。</p>
+<h2 id="2-增强学习的世界观"><a href="#2-增强学习的世界观" class="headerlink" title="2 增强学习的世界观"></a>2 增强学习的世界观</h2><p>可能很少有人用世界观来看增强学习甚至人工智能的一些问题，但实际上任何问题的建立都是在一个基本的假设下进行构建的，也就是这个领域的世界观。</p>
+<p><strong>那么，增强学习建立在怎样的世界观上呢？</strong></p>
+<p>增强学习的研究依然建立在经典物理学的范畴上，也就是没有量子计算也没有相对论。这个世界的时间是可以分割成一个一个时间片的，并且有完全的先后顺序，因此可以形成</p>
+<p>$$ \lbrace s_0,a_0,r_0,s_1,a_1,r_1,…s_t,a_t,r_t \rbrace $$</p>
+<p>这样的状态，动作和反馈系列。这些数据样本是进行增强学习的基础。</p>
+<p>另一个很重要的假设就是</p>
+<p><strong>上帝不掷筛子！</strong></p>
+<p>在增强学习的世界，我们相信如果输入是确定的，那么输出也一定是确定的。试想一下，有一个机械臂在练习掷筛子，以掷出6点作为目标。但是如果无论机械臂如何调整其关节的角度及扭矩，掷出的点数永远是随机的，那么无论如何也不可能通过算法使机械臂达成目标。因此，增强学习算法要有用，就是相信在增强学习中每一次参数的调整都会对世界造成确定性的影响。</p>
+<p>以上两点便是增强学习算法建立的基础。当然了，基本上人工智能的研究都是在这样的基础上进行研究，探讨其世界观的意义并不是很大，但是意识到这一点可以有助于理解当前人工智能研究的局限性。</p>
+<p>那么有了时间和确定性的假设，MDP（Markov Decision Process）便是为了描述这个世界而提出的概念。</p>
+<h2 id="3-MDP（Markov-Decision-Process）马尔科夫决策过程"><a href="#3-MDP（Markov-Decision-Process）马尔科夫决策过程" class="headerlink" title="3 MDP（Markov Decision Process）马尔科夫决策过程"></a>3 MDP（Markov Decision Process）马尔科夫决策过程</h2><p>MDP基于这样一种假设：</p>
 <blockquote>
-<p>增强学习的任务就是找到一个最优的策略Policy从而使Reward最多。</p>
+<p>未来只取决于当前</p>
 </blockquote>
-<p>我们一开始并不知道最优的策略是什么，因此往往从随机的策略开始，使用随机的策略进行试验，就可以得到一系列的状态,动作和反馈：</p>
-<p>$$ \lbrace s_1,a_1,r_1,s_2,a_2,r_2,…s_t,a_t,r_t \rbrace $$</p>
-<p>这就是一系列的<strong>样本Sample</strong>。增强学习的算法就是需要根据这些样本来改进Policy，从而使得得到的样本中的Reward更好。由于这种让Reward越来越好的特性，所以这种算法就叫做增强学习Reinforcement Learning。</p>
-<h2 id="4-What’s-Next"><a href="#4-What’s-Next" class="headerlink" title="4 What’s Next?"></a>4 What’s Next?</h2><p>在下一篇文章中，笔者将和大家分享MDP马尔科夫决策过程的知识，这是构建增强学习算法的基础。敬请关注！</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a></p>
+<p>什么意思呢？</p>
+<p>就是如果我们站在上帝视角下看，我们知道这个世界的每个物体的状态，那么未来的变化只跟当前的状态相关，和过去没有关系。</p>
+<p>用数学的话来描述就是：</p>
+<p>一个状态$ S_t $是Markov当且仅当</p>
+<p>$$ P(s_{t+1}|s_t)=P(s_{t+1}|s_t,s_{t-1},…s_1,s_0) $$</p>
+<p>P为概率。简单的说就是下一个状态仅取决于当前的状态和当前的动作。注意<strong>这里的状态是完全可观察的全部的环境状态（也就是上帝视角）</strong>。当然，对于一些游戏比如围棋在游戏的世界中就是完全可观察的。上面的公式可以用概率论的方法来证明。这里，我们说一个更通俗易懂的方式：举个栗子，在理想环境中有一个球，以某一个速度v斜向上45度抛出，受重力G影响，求这个球的运行轨迹？初中的物理题。显然，我们知道了球的初速度，受力情况，我们可以完全计算出球在每一个时间点上位置和速度。而且我们只要知道某一个时间点上球的速度和受力情况，下一个时间点的速度和位置就可以求出。这就是一个MDP过程。</p>
+<p>往大的说，如果宇宙起始于大爆炸的奇点。那么奇点状态确定，如果上帝不掷筛子的话，那么宇宙就是一个MDP的过程，它的每一步都是确定的，推到人身上就是每个人的命运也都是确定的。换句话讲，我们现在的所思所想不过是由我们身上的每个细胞导致的精神状态，意识以及周围的环境所完全确定的。所以MDP的宇宙大概没什么意思，还好还有量子力学和相对论，我也相信这个世界是不确定的。</p>
+<p>回到增强学习的范畴，增强学习的问题都可以模型化为MDP的问题。</p>
+<p>一个基本的MDP可以用（S,A,P）来表示，S表示状态，A表示动作，P表示状态转移概率，也就是根据当前的状态$ s_t $和$ a_t $转移到$ s_{t+1} $的概率。如果我们知道了转移概率P，也就是称为我们获得了<strong>模型Model</strong>，有了模型，未来就可以求解，那么获取最优的动作也就有可能，这种通过模型来获取最优动作的方法也就称为Model-based的方法。但是现实情况下，很多问题是很难得到准确的模型的，因此就有Model-free的方法来寻找最优的动作。关于具体的方法这里不具体讨论。在以后的文章中我们会通过分析具体的算法对此有个明确的认识。</p>
+<h2 id="4-回报Result"><a href="#4-回报Result" class="headerlink" title="4 回报Result"></a>4 回报Result</h2><p>既然一个状态对应一个动作，或者动作的概率，而有了动作，下一个状态也就确定了。这就意味着每个状态可以用一个确定的值来进行描述。可以由此判断一个状态是好的状态还是不好的状态。比如，向左边走就是悬崖，悬崖肯定不是好的状态，再走一步可能就挂了，而向右走就是黄金，那么右边的状态就是好的状态。</p>
+<p>那么状态的好坏其实等价于对未来回报的期望。因此，引入<strong>回报Return</strong>来表示某个时刻t的状态将具备的回报：<br>$$ G_t=R_{t+1}+\lambda+R_{t+2}+…=\sum_{k=0}^\infty\lambda^kR_{t+k+1} $$</p>
+<p>上面R是Reward反馈，λ是discount factor折扣因子，一般小于1，就是说一般当下的反馈是比较重要的，时间越久，影响越小。</p>
+<p>那么实际上除非整个过程结束，否则显然我们无法获取所有的reward来计算出每个状态的Return，因此，再引入一个概念价值函数Value Function,用value function $ v(s) $来表示一个状态未来的潜在价值。还是上面的例子，这里就变成是向左看感觉左边是悬崖那么左边的状态的估值就低。</p>
+<p>从定义上看，value function就是回报的期望：<br>$$ v(s)=\mathbb+E[G_t|S_t=s] $$</p>
+<p>引出价值函数，对于获取最优的策略Policy这个目标，我们就会有两种方法：</p>
+<ul>
+<li>直接优化策略$ \pi(a|s) $或者$ a+=+\pi(s) $使得回报更高</li>
+<li>通过估计value function来间接获得优化的策略。道理很简单，既然我知道每一种状态的优劣，那么我就知道我应该怎么选择了，而这种选择就是我们想要的策略。</li>
+</ul>
+<p>当然了，还有第三种做法就是融合上面的两种做法，这也就是以后会讲到的actor-critic算法。但是现在为了理解DQN，我们将只关注第二种做法，就是估计value function的做法，因为DQN就是基于value function的算法。</p>
+<h2 id="5-What’s-Next"><a href="#5-What’s-Next" class="headerlink" title="5 What’s Next?"></a>5 What’s Next?</h2><p>有了价值函数value function，那么下一步我们就是需要考虑如何计算价值函数的问题了，这将引入一个极其重要的方程——Bellman方程，敬请期待下一篇文章的讲解。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a><br><a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃2 增强学习与MDP</a></p>
 <span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;background-color: rgb(255, 255, 255);letter-spacing: 0.5px;font-size: 14px;color: rgb(136, 136, 136);">
 来源：
 
 <p><a href="https://www.zhihu.com/people/flood-sung/activities" target="_blank" rel="noopener">Flood Sung</a><br><a href="https://zhuanlan.zhihu.com/intelligentunit" target="_blank" rel="noopener">智能单元</a></p>
 </span>
-
 
 
 
@@ -317,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,18 +339,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          DQN从入门到放弃2-增强学习与MDP
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/22/10-机器学习概览/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">10.机器学习概览</div>
+    <a href="/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DQN从入门到放弃1-DQN与增强学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -369,7 +368,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-number">1.</span> <span class="toc-text">1 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-预备条件"><span class="toc-number">2.</span> <span class="toc-text">2 预备条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-增强学习是什么"><span class="toc-number">3.</span> <span class="toc-text">3 增强学习是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-What’s-Next"><span class="toc-number">4.</span> <span class="toc-text">4 What’s Next?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">5.</span> <span class="toc-text">链接</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上文回顾"><span class="toc-number">1.</span> <span class="toc-text">1 上文回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-增强学习的世界观"><span class="toc-number">2.</span> <span class="toc-text">2 增强学习的世界观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-MDP（Markov-Decision-Process）马尔科夫决策过程"><span class="toc-number">3.</span> <span class="toc-text">3 MDP（Markov Decision Process）马尔科夫决策过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-回报Result"><span class="toc-number">4.</span> <span class="toc-text">4 回报Result</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-What’s-Next"><span class="toc-number">5.</span> <span class="toc-text">5 What’s Next?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">6.</span> <span class="toc-text">链接</span></a></li></ol>
                     </div>
                 </span>
             </div>
