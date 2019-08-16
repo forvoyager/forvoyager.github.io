@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>Tag: 机器学习 | 星空日记</title>
+  <title>DQN从入门到放弃3-价值函数与Bellman方程 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JAVA,AI,ML">
-<meta property="og:type" content="website">
-<meta property="og:title" content="星空日记">
-<meta property="og:url" content="http://forvoyager.github.io/tags/机器学习/index.html">
+  <meta name="description" content="增强学习与MDP">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DQN从入门到放弃3-价值函数与Bellman方程">
+<meta property="og:url" content="http://forvoyager.github.io/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/index.html">
 <meta property="og:site_name" content="星空日记">
+<meta property="og:description" content="增强学习与MDP">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/13/1.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/13/2.png">
+<meta property="og:updated_time" content="2019-08-16T06:19:42.967Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="星空日记">
+<meta name="twitter:title" content="DQN从入门到放弃3-价值函数与Bellman方程">
+<meta name="twitter:description" content="增强学习与MDP">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -177,36 +185,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-13-DQN从入门到放弃3-价值函数与Bellman方程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      DQN从入门到放弃3-价值函数与Bellman方程
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" class="archive-article-date">
+
+        
+        <a href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" class="archive-article-date">
   	<time datetime="2019-08-16T05:54:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/">DQN从入门到放弃3-价值函数与Bellman方程</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/pic/11/bg.jpg" alt><br>增强学习与MDP</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="1-上文回顾"><a href="#1-上文回顾" class="headerlink" title="1 上文回顾"></a>1 上文回顾</h2><p>在上一篇文章<a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃 第二篇</a>中，我们探讨了增强学习问题的基本假设，然后引出了MDP马尔科夫决策过程。MDP只需要用一句话就可以说明白，就是“未来只取决于当前”，专业点说就是下一步的状态只取决于当前的状态，与过去的状态没有关系。这里大家要注意这里所说的状态是<strong>完全可观察的</strong>，也就是上帝眼中的世界。再举例说明一下完全可观察的意思就是比如我们的眼睛看到的世界，那就是不完全可观察的，我们并不清楚的知道眼前的每一个物体，比如人，车，动物的真实物理位置，因此也就是无法准确知道它们下一个时刻的状态（比如车的位置）只能通过估算的方法来估计。而在上帝眼中，那么每一个物体的位置和速度信息都是确定的，也因此下一个时刻的状态也就是完全确定的。</p>
+<p>在引出了MDP之后，由于每一个时刻的状态是确定的，因此我们可以用Value Function价值函数来描述这个状态的价值，从而确定我们的决策方式。有知友表示不是很理解Value Function，那么下面我们再具体探讨一下。</p>
+<h2 id="2-Value-Function-价值函数"><a href="#2-Value-Function-价值函数" class="headerlink" title="2 Value Function 价值函数"></a>2 Value Function 价值函数</h2><p>我们用一个例子来说明Value Function的含义与重要性。</p>
+<p>这是一个投资决策问题：假如我们有一笔X美刀的资金，我们眼前有三种选择来使用这笔资金：</p>
+<ol>
+<li>使用资金进行股票投资</li>
+<li>使用资金进行买房投资</li>
+<li>使用资金购买书籍，科研设备等提升资金</li>
+</ol>
+<p>那么，我们就面临如何做选择的问题。这里假设我们只能选择其中的一个做选择。</p>
+<p>我们先来解释一下直接基于Policy的方法是怎样的。</p>
+<p>直接基于Policy的意思就是我们有一套Policy策略，我们基于这个策略进行操作，比如可以有如下所示的策略：</p>
+<blockquote>
+<p>if 资金X &gt; 500000:<br>     选择股票投资<br>  else if 资金X &gt; 100000:<br>     选择房产投资<br>  else:<br>     选择买书，买设备自我提升</p>
+</blockquote>
+<p>那么上面的伪代码就是表示一个极其简单的策略。这个策略只考虑资金量，输入资金量，输出决策方式。如果把Policy策略看做是一个黑箱，那么基于策略的方法就是：<br><img src="/pic/13/1.png" alt><br>那么如果不是基于Policy策略直接做出决策，我们还有什么办法呢？</p>
+<p>显然有，而且大家可以从上面的简单策略看到一个最大的缺陷，就是上面的策略完全不考虑每一种选择未来的价值。我们做决策是有目的的，那就是为了最大化未来的回报Result是不是？那么对于上面的投资选择问题，我们的目标就是希望我们的投资回报率最高。因此，上面的简单策略竟然完全不考虑每一种选择的价值，而仅考虑资金量，显然是一种欠考虑的方法。因此，我们是不是应该评估一下每一种选择的潜在价值呢？耶，价值Value出来了，是不是？通过对价值的评估，我们也就可以有如下的做决策的方法：<br><img src="/pic/13/2.png" alt><br>我们就评估每一种状态（选择+资金量）的价值，然后选择价值最高的作为最后的决策。</p>
+<p>比如说：</p>
+<blockquote>
+<p>if 投资股市:<br>     因为股市低迷，价值为-100<br> if 投资房产 + 资金量 &gt; 100000:<br>     因为房产泡沫还没破，各地房价还在涨，价值为+500<br> if 提升自己 + 资金量 &lt; 100000:<br>     当前人工智能潜力巨大，资金又不算太大，投资自己价值为+1000<br> …(更多的评估价值的方法）</p>
+</blockquote>
+<p>OK, 假设现在我们有50000的资金，那么根据我们的价值估算方法，选择投资自己的价值最大，为+1000，因此我们就选择投资自己作为决策结果。</p>
+<p>从数学的角度，我们常常会用一个函数$ V(s) $来表示一个状态的价值，也可以用$ Q(s,a) $来表示状态及某一个动作的价值。我们上面的例子就是来评估某一个状态下动作的价值，然后根据价值做出判断。实际上我们这里也是有策略的，我们的策略更简单：</p>
+<blockquote>
+<p>if 某一个决策的价值最大：<br>     选择这个决策</p>
+</blockquote>
+<p>这就是价值函数的意义。在后面的文章当中，我们还会发现，其实我们还可以同时使用策略加价值评估的方法来联合给出决策，这种算法就是所谓的<strong>Actor-Critic</strong>算法。这里就不多加介绍了。</p>
+<h2 id="3-再谈增强学习的意义"><a href="#3-再谈增强学习的意义" class="headerlink" title="3 再谈增强学习的意义"></a>3 再谈增强学习的意义</h2><p>从上面的例子想必大家会发现，增强学习面向的决策与控制问题与我们的行为息息相关。我们想要让计算机自己能够学习做出某种决策，并且是可以不断改进的决策。对于人工智能，最大的目的不就是要创造智能，会自己思考，能模仿人类的行为，从而能够代替人类做事情吗？增强学习的目的就是希望计算机能够模仿人类的行为。这样一看，知友们是不是马上觉得增强学习意义非常之大。</p>
+<p>实际上增强学习的算法都是基于人类的行为而构建的。比如上面的Value Function价值函数，实际上人类自己做决策的时候也就是那么做的。这里只不过是把它数学化了而已。</p>
+<p>按照DeepMind的David Silver，也就是AlphaGo的第一作者所言：</p>
+<blockquote>
+<p>DL + RL = AI</p>
+</blockquote>
+<p>DL深度学习给了计算机“神经网络大脑”，RL给了计算机学习机制。这两者结合起来，就能创造智能！</p>
+<p>多说这么几句只是想让知友们真正意识到 Deep Reinforcement Learning深度增强学习为什么这么重要，这么值得研究。</p>
+<p>接下来，我们介绍Bellman方程，增强学习领域最重要的一个方程。很多算法都是基于Bellman方程衍生而来。</p>
+<h2 id="4-Bellman方程"><a href="#4-Bellman方程" class="headerlink" title="4 Bellman方程"></a>4 Bellman方程</h2><p>在上文我们介绍了Value Function价值函数，所以为了解决增强学习的问题，一个显而易见的做法就是—-</p>
+<blockquote>
+<p>我们需要估算Value Function</p>
+</blockquote>
+<p>是的，只要我们能够计算出价值函数，那么最优决策也就得到了。因此，问题就变成了如何计算Value Function？</p>
+<p>怎么估算价值呢？</p>
+<p>我们还是先想想我们人是怎么估算的？我们还是以上面的投资决策问题来作为例子</p>
+<p>一般我们基于以下几种情况来做评估：</p>
+<ul>
+<li>其他人的选择。比如有很多人投资股市失败，因此我们就会降低我们投资股票的价值。</li>
+<li>自己的反复试验。我们常常不是只做一次选择，而是做了很多次选择，从而收获了所谓的“经验”的东西。我们根据经验来评估选择的价值。比如我们做了好几次投资楼市的选择，结果大获成功，因此我们就会认为投资楼市是不错的选择。</li>
+<li>基于理性分析。我们根据我们已有的知识对当前的情况做分析，从而做出一定的判断。</li>
+<li>基于感性的逻辑。比如选择投资自己到人工智能领域。虽然我们大约觉得人工智能前景很好，但是我们真正要投资自己到这个领域有时候仅仅是出于一种热爱或者说一种理想主义。就是不管别人觉得好不好，反正我觉得好，我就这么选了。</li>
+</ul>
+<p>计算机要如何才能评估价值呢？</p>
+<ul>
+<li>其他人的选择。不好意思，计算机只有自己，没有其他人。也许你会说多台计算机。如果是共用一个“大脑”做分布式计算，那还是只有自己。</li>
+<li>基于理性分析。不好意思，计算机在面对问题时往往什么都不知道，比如基于屏幕玩Atari游戏，计算机压根不知道看到的像素是个什么东西。它没有人类的先验知识，无法分析。（当然啦，先使用监督学习然后再增强学习的AlphaGo就是有先验知识的情况下做的增强学习）</li>
+<li>基于感性的逻辑。不好意思，计算机目前还产生不了感性。</li>
+</ul>
+<p>那么，基于自己的反复试验呢？耶，这个可以啊。计算机这方面比人类强多了，可以24小时不分昼夜的反复试验，然后对价值做出正确的判断。</p>
+<p>所以，Value Function从分析上是可以评估出来的，那具体该怎么评估呢？</p>
+<p>我们下面将不得不引入点数学公式，虽然也会非常好理解。</p>
+<p>还记得<strong>回报Result</strong>的基本定义吗？就是所有Reward的累加（带衰减系数discount factor）<br>$$ G_t=R_{t+1}+\lambda R_{t+2}+…=\sum_{k=0}^\infty\lambda^kR_{t+k+1} $$</p>
+<p>那么Value Function该如何定义？也很简单，就是期望的回报啊！期望的回报越高，价值显然也就越大，也就越值得去选择。用数学来定义就是如下：<br>$$ v(s)=\mathbb E[G_t|S_t=s] $$</p>
+<p>接下来，我们把上式展开如下：<br>\begin{align}<br>v(s)=\mathbb E[G_t|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda R_{t+2}+\lambda ^2R_{t+3}+…|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda (R_{t+2}+\lambda R_{t+3}+…)|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda+G_{t+1}|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda+v(S_{t+1})|S_t=s]<br>\end{align}</p>
+<p>因此，<br>$$ v(s)=\mathbb E[R_{t+1}+\lambda v(S_{t+1})|S_t=s] $$</p>
+<p>上面这个公式就是<strong>Bellman方程</strong>的基本形态。从公式上看，当前状态的价值和下一步的价值以及当前的反馈Reward有关。</p>
+<blockquote>
+<p>它表明Value Function是可以通过迭代来进行计算的!!!</p>
+</blockquote>
+<h2 id="5-What’s-Next"><a href="#5-What’s-Next" class="headerlink" title="5 What’s Next?"></a>5 What’s Next?</h2><p>Bellman方程是这么简洁的一个等式，但却是增强学习算法的基础。在下一篇文章中，我们将探讨Dynamic Programming动态规划，也就是基于Bellman方程而衍生得到的求解Value Function的方法。敬请关注。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a><br><a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃2 增强学习与MDP</a><br><a href="https://zhuanlan.zhihu.com/p/21340755?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃3 价值函数与Bellman方程</a><br><a href="https://zhuanlan.zhihu.com/p/21378532?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃4 动态规划与Q-Learning</a><br><a href="https://zhuanlan.zhihu.com/p/21421729?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃5 深度解读DQN算法</a><br><a href="https://zhuanlan.zhihu.com/p/21547911?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃6 DQN的各种改进</a><br><a href="https://zhuanlan.zhihu.com/p/21609472?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃7 连续控制DQN算法-NAF</a></p>
+<span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;background-color: rgb(255, 255, 255);letter-spacing: 0.5px;font-size: 14px;color: rgb(136, 136, 136);">
+来源：
+
+<p><a href="https://www.zhihu.com/people/flood-sung/activities" target="_blank" rel="noopener">Flood Sung</a><br><a href="https://zhuanlan.zhihu.com/intelligentunit" target="_blank" rel="noopener">智能单元</a></p>
+</span>
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -218,213 +303,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" class="archive-article-date">
-  	<time datetime="2019-08-15T03:50:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DQN从入门到放弃2-增强学习与MDP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/">DQN从入门到放弃2-增强学习与MDP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上文回顾"><span class="toc-number">1.</span> <span class="toc-text">1 上文回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Value-Function-价值函数"><span class="toc-number">2.</span> <span class="toc-text">2 Value Function 价值函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-再谈增强学习的意义"><span class="toc-number">3.</span> <span class="toc-text">3 再谈增强学习的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Bellman方程"><span class="toc-number">4.</span> <span class="toc-text">4 Bellman方程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-What’s-Next"><span class="toc-number">5.</span> <span class="toc-text">5 What’s Next?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">6.</span> <span class="toc-text">链接</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/" class="archive-article-date">
-  	<time datetime="2019-08-14T03:14:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/">DQN从入门到放弃1-DQN与增强学习</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/22/10-机器学习概览/" class="archive-article-date">
-  	<time datetime="2019-07-22T02:02:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/22/10-机器学习概览/">10.机器学习概览</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/05/7-gym学习及二次开发/" class="archive-article-date">
-  	<time datetime="2019-07-05T03:23:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/05/7-gym学习及二次开发/">7.gym学习及二次开发</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/03/6-Understanding-LSTM-Networks/" class="archive-article-date">
-  	<time datetime="2019-07-03T01:16:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/03/6-Understanding-LSTM-Networks/">6.Understanding LSTM Networks</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -447,9 +438,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

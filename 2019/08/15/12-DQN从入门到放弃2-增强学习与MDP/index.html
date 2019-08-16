@@ -17,7 +17,7 @@
 <meta property="og:description" content="增强学习与MDP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
-<meta property="og:updated_time" content="2019-08-15T05:32:31.360Z">
+<meta property="og:updated_time" content="2019-08-16T06:03:08.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DQN从入门到放弃2-增强学习与MDP">
 <meta name="twitter:description" content="增强学习与MDP">
@@ -237,18 +237,18 @@
 <p>回到增强学习的范畴，增强学习的问题都可以模型化为MDP的问题。</p>
 <p>一个基本的MDP可以用（S,A,P）来表示，S表示状态，A表示动作，P表示状态转移概率，也就是根据当前的状态$ s_t $和$ a_t $转移到$ s_{t+1} $的概率。如果我们知道了转移概率P，也就是称为我们获得了<strong>模型Model</strong>，有了模型，未来就可以求解，那么获取最优的动作也就有可能，这种通过模型来获取最优动作的方法也就称为Model-based的方法。但是现实情况下，很多问题是很难得到准确的模型的，因此就有Model-free的方法来寻找最优的动作。关于具体的方法这里不具体讨论。在以后的文章中我们会通过分析具体的算法对此有个明确的认识。</p>
 <h2 id="4-回报Result"><a href="#4-回报Result" class="headerlink" title="4 回报Result"></a>4 回报Result</h2><p>既然一个状态对应一个动作，或者动作的概率，而有了动作，下一个状态也就确定了。这就意味着每个状态可以用一个确定的值来进行描述。可以由此判断一个状态是好的状态还是不好的状态。比如，向左边走就是悬崖，悬崖肯定不是好的状态，再走一步可能就挂了，而向右走就是黄金，那么右边的状态就是好的状态。</p>
-<p>那么状态的好坏其实等价于对未来回报的期望。因此，引入<strong>回报Return</strong>来表示某个时刻t的状态将具备的回报：<br>$$ G_t=R_{t+1}+\lambda+R_{t+2}+…=\sum_{k=0}^\infty\lambda^kR_{t+k+1} $$</p>
+<p>那么状态的好坏其实等价于对未来回报的期望。因此，引入<strong>回报Return</strong>来表示某个时刻t的状态将具备的回报：<br>$$ G_t=R_{t+1}+\lambda R_{t+2}+…=\sum_{k=0}^\infty\lambda^kR_{t+k+1} $$</p>
 <p>上面R是Reward反馈，λ是discount factor折扣因子，一般小于1，就是说一般当下的反馈是比较重要的，时间越久，影响越小。</p>
 <p>那么实际上除非整个过程结束，否则显然我们无法获取所有的reward来计算出每个状态的Return，因此，再引入一个概念价值函数Value Function,用value function $ v(s) $来表示一个状态未来的潜在价值。还是上面的例子，这里就变成是向左看感觉左边是悬崖那么左边的状态的估值就低。</p>
-<p>从定义上看，value function就是回报的期望：<br>$$ v(s)=\mathbb+E[G_t|S_t=s] $$</p>
+<p>从定义上看，value function就是回报的期望：<br>$$ v(s)=\mathbb E[G_t|S_t=s] $$</p>
 <p>引出价值函数，对于获取最优的策略Policy这个目标，我们就会有两种方法：</p>
 <ul>
-<li>直接优化策略$ \pi(a|s) $或者$ a+=+\pi(s) $使得回报更高</li>
+<li>直接优化策略$ \pi(a|s) $或者$ a=\pi(s) $使得回报更高</li>
 <li>通过估计value function来间接获得优化的策略。道理很简单，既然我知道每一种状态的优劣，那么我就知道我应该怎么选择了，而这种选择就是我们想要的策略。</li>
 </ul>
 <p>当然了，还有第三种做法就是融合上面的两种做法，这也就是以后会讲到的actor-critic算法。但是现在为了理解DQN，我们将只关注第二种做法，就是估计value function的做法，因为DQN就是基于value function的算法。</p>
 <h2 id="5-What’s-Next"><a href="#5-What’s-Next" class="headerlink" title="5 What’s Next?"></a>5 What’s Next?</h2><p>有了价值函数value function，那么下一步我们就是需要考虑如何计算价值函数的问题了，这将引入一个极其重要的方程——Bellman方程，敬请期待下一篇文章的讲解。</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a><br><a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃2 增强学习与MDP</a></p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a><br><a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃2 增强学习与MDP</a><br><a href="https://zhuanlan.zhihu.com/p/21340755?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃3 价值函数与Bellman方程</a><br><a href="https://zhuanlan.zhihu.com/p/21378532?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃4 动态规划与Q-Learning</a><br><a href="https://zhuanlan.zhihu.com/p/21421729?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃5 深度解读DQN算法</a><br><a href="https://zhuanlan.zhihu.com/p/21547911?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃6 DQN的各种改进</a><br><a href="https://zhuanlan.zhihu.com/p/21609472?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃7 连续控制DQN算法-NAF</a></p>
 <span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;background-color: rgb(255, 255, 255);letter-spacing: 0.5px;font-size: 14px;color: rgb(136, 136, 136);">
 来源：
 
@@ -338,6 +338,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DQN从入门到放弃3-价值函数与Bellman方程
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/14/11-DQN从入门到放弃1-DQN与增强学习/" id="article-nav-older" class="article-nav-link-wrap">
@@ -505,15 +514,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,6 +527,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">分布式锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
