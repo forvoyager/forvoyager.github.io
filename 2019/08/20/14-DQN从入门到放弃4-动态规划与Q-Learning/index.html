@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
-  <title>2.代码生成器 | 星空日记</title>
+  <title>DQN从入门到放弃4-动态规划与Q-Learning | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="节省时间去陪老婆，就靠你了……">
-<meta name="keywords" content="JAVA">
+  <meta name="description" content="价值函数与Bellman方程">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2.代码生成器">
-<meta property="og:url" content="http://forvoyager.github.io/2019/06/14/2-代码生成器/index.html">
+<meta property="og:title" content="DQN从入门到放弃4-动态规划与Q-Learning">
+<meta property="og:url" content="http://forvoyager.github.io/2019/08/20/14-DQN从入门到放弃4-动态规划与Q-Learning/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="节省时间去陪老婆，就靠你了……">
+<meta property="og:description" content="价值函数与Bellman方程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
-<meta property="og:updated_time" content="2019-07-05T09:40:54.095Z">
+<meta property="og:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
+<meta property="og:image" content="http://forvoyager.github.io/pic/14/1.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/14/2.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/14/3.png">
+<meta property="og:image" content="http://forvoyager.github.io/pic/14/4.png">
+<meta property="og:updated_time" content="2019-08-20T08:05:44.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2.代码生成器">
-<meta name="twitter:description" content="节省时间去陪老婆，就靠你了……">
-<meta name="twitter:image" content="http://forvoyager.github.io/pic/unclassified/codegen-cover.png">
+<meta name="twitter:title" content="DQN从入门到放弃4-动态规划与Q-Learning">
+<meta name="twitter:description" content="价值函数与Bellman方程">
+<meta name="twitter:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
   
@@ -183,61 +187,91 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2-代码生成器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-14-DQN从入门到放弃4-动态规划与Q-Learning" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2.代码生成器
+      DQN从入门到放弃4-动态规划与Q-Learning
     </h1>
   
 
         
-        <a href="/2019/06/14/2-代码生成器/" class="archive-article-date">
-  	<time datetime="2019-06-14T09:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-14</time>
+        <a href="/2019/08/20/14-DQN从入门到放弃4-动态规划与Q-Learning/" class="archive-article-date">
+  	<time datetime="2019-08-20T07:25:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>节省时间去陪老婆，就靠你了……<br><img src="/pic/unclassified/codegen-cover.png" alt></p>
+        <p><img src="/pic/11/bg.jpg" alt><br>价值函数与Bellman方程</p>
 <a id="more"></a>
 
-<h1 id="代码生成工具"><a href="#代码生成工具" class="headerlink" title="代码生成工具"></a>代码生成工具</h1><p>用于在项目开发过程中生成mapper, mapper xml, dao, service, controller等基础代码，让开发人员不必花费过多的时间在这些基础代码的开发上。</p>
-<p>目前生成的是微服务架构代码格式，如果需要MVC风格代码，忽略掉*-client-starter模块的内容即可。</p>
-<p><a href="https://github.com/forvoyager/code-generator" target="_blank" rel="noopener">先贴代码……</a></p>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><h2 id="代码信息配置"><a href="#代码信息配置" class="headerlink" title="代码信息配置"></a>代码信息配置</h2><p>在<a href="https://github.com/forvoyager/code-generator/blob/master/src/main/java/com/xr/code/generate/CodeGenerator.java" target="_blank" rel="noopener">CodeGenerator类</a>中按照项目/模块的需要，配置好项目信息、作者信息及数据库信息，然后添加需要生成基础代码的表。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目名称</span></span><br><span class="line">String projectName = <span class="string">"micro_service"</span>;</span><br><span class="line"><span class="comment">// 基础包名</span></span><br><span class="line">String basePackageName = <span class="string">"com.xr"</span>;</span><br><span class="line"><span class="comment">// 模块名称</span></span><br><span class="line">String moduleName = <span class="string">"account"</span>;</span><br><span class="line"><span class="comment">// 模块名前缀</span></span><br><span class="line">String modulePrefix = <span class="string">"ms-"</span>;</span><br><span class="line"><span class="comment">// 作者</span></span><br><span class="line">String author = <span class="string">"forvoyager@outlook.com"</span>;</span><br><span class="line"><span class="comment">// 代码存放路径</span></span><br><span class="line">String outputPath = <span class="string">"./code"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库配置</span></span><br><span class="line">String url = <span class="string">"jdbc:mysql://localhost:3306/ms_account_db?characterEncoding=UTF-8"</span>;</span><br><span class="line">String driver = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">String username = <span class="string">"root"</span>;</span><br><span class="line">String password = <span class="string">"123456"</span>;</span><br><span class="line"><span class="comment">// 需要去掉的表前缀</span></span><br><span class="line">String skipTablePrefix = <span class="string">"ms_"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要生成代码的表</span></span><br><span class="line">List&lt;String&gt; tables = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">tables.add(<span class="string">"ms_account"</span>);</span><br><span class="line">tables.add(<span class="string">"ms_user_level"</span>);</span><br></pre></td></tr></table></figure>
-
-<p><font color="red">注</font>：</p>
+<h2 id="1-上文回顾"><a href="#1-上文回顾" class="headerlink" title="1 上文回顾"></a>1 上文回顾</h2><p>在上一篇文章<a href="https://zhuanlan.zhihu.com/p/21340755?refer=intelligentunit" target="_blank" rel="noopener">DQN从入门到放弃 第三篇</a>中，我们分析到了Bellman方程，其方程<br>$$ v(s)=\mathbb E[R_{t+1}+\lambda v(S_{t+1})|S_t=s] $$</p>
+<p>极其简洁，透出的含义就是价值函数的计算可以通过迭代的方式来实现。接下来本文将介绍如何构建基于Bellman方程的算法及Q-Learning。首先介绍动作价值函数</p>
+<h2 id="2-Action-Value-function-动作价值函数"><a href="#2-Action-Value-function-动作价值函数" class="headerlink" title="2 Action-Value function 动作价值函数"></a>2 Action-Value function 动作价值函数</h2><p>前面我们引出了价值函数，考虑到每个状态之后都有多种动作可以选择，每个动作之下的状态又多不一样，我们更关心在某个状态下的不同动作的价值。显然。如果知道了每个动作的价值，那么就可以选择价值最大的一个动作去执行了。这就是Action-Value function $ Q^\pi(s,a) $。那么同样的道理，也是使用reward来表示，只是这里的reward和之前的reward不一样，这里是执行完动作action之后得到的reward，之前state对应的reward则是多种动作对应的reward的期望值。显然，动作之后的reward更容易理解。</p>
+<p>那么，有了上面的定义，动作价值函数就为如下表示：<br>\begin{align}<br>  Q^\pi(s,a)&amp;=\mathbb E[r_{t+1}+\lambda r_{t+2}+\lambda ^2r_{t+3}+…+|s,a]\\<br>            &amp;=\mathbb E_{s^\prime}[r \lambda Q^\pi(s^\prime,a^\prime)|s,a]<br>\end{align}</p>
+<p>这里要说明的是动作价值函数的定义，加了$ \pi $,也就是说是在策略下的动作价值。因为对于每一个动作而已，都需要由策略根据当前的状态生成，因此必须有策略的支撑。而前面的价值函数则不一定依赖于策略。当然，如果定义$ v^\pi(s) $则表示在策略$ \pi $下的价值。</p>
+<p>那么事实上我们会更多的使用动作价值函数而不是价值函数，因为动作价值函数更直观，更方便应用于算法当中。</p>
+<h2 id="3-Optimal-value-function-最优价值函数"><a href="#3-Optimal-value-function-最优价值函数" class="headerlink" title="3 Optimal value function 最优价值函数"></a>3 Optimal value function 最优价值函数</h2><p>能计算动作价值函数是不够的，因为我们需要的是最优策略，现在求解最优策略等价于求解最优的value function，找到了最优的value function，自然而然策略也就是找到。（当然，这只是求解最优策略的一种方法，也就是value-based approach，由于DQN就是value-based，因此这里只讲这部分，以后我们会看到还有policy-based和model-based方法。一个就是直接计算策略函数，一个是估计模型，也就是计算出状态转移函数，从而整个MDP过程得解）</p>
+<p>这里以动作价值函数来分析。</p>
+<p>首先是最优动作价值函数和一般的动作价值函数的关系：<br>$$ Q^*(s,a)=\max_\pi+Q^\pi(s,a) $$</p>
+<p>也就是最优的动作价值函数就是所有策略下的动作价值函数的最大值。通过这样的定义就可以使最优的动作价值的唯一性，从而可以求解整个MDP。这部分在上一篇文章的评论中有介绍。</p>
+<p>那么套用上一节得到的value function，可以得到<br>$$ Q^<em>(s,a)=\mathbb E_{s^\prime}[r+\lambda+\max+_{a^\prime}Q^</em>(s^\prime,a^\prime)|s,a] $$</p>
+<p>因为最优的Q值必然为最大值，所以，等式右侧的Q值必然为使a′取最大的Q值。</p>
+<p>下面介绍基于Bellman方程的两个最基本的算法，策略迭代和值迭代。</p>
+<h2 id="4-策略迭代Policy-Iteration"><a href="#4-策略迭代Policy-Iteration" class="headerlink" title="4 策略迭代Policy Iteration"></a>4 策略迭代Policy Iteration</h2><p>Policy Iteration的目的是通过迭代计算value function 价值函数的方式来使policy收敛到最优。</p>
+<p>Policy Iteration本质上就是直接使用Bellman方程而得到的：<br>$$<br>\begin{aligned}<br>v_{k+1}(s) &amp; \doteq \mathbb{E}<em>{\pi}\left[R</em>{t+1}+\gamma v_{k}\left(S_{t+1}\right) | S_{t}=s\right] \\<br>&amp;=\sum_{a} \pi(a | s) \sum_{s^{\prime}, r} p\left(s^{\prime}, r | s, a\right)\left[r+\gamma v_{k}\left(s^{\prime}\right)\right]<br>\end{aligned}<br>$$</p>
+<p>那么Policy Iteration一般分成两步：</p>
 <ol>
-<li>表及字段信息会从数据库获取，所以建表要规范，相关备注、默认值等配置好。</li>
-<li>表名中如果有下划线，会转换为驼峰命名规则，如表：ms_funds_data生成的代码形如FundsDataModel，字段名不受此影响。</li>
+<li>Policy Evaluation 策略评估。目的是 更新Value Function，或者说更好的估计基于当前策略的价值</li>
+<li>Policy Improvement 策略改进。 使用 greedy policy 产生新的样本用于第一步的策略评估。<br><img src="/pic/14/1.png" alt><br>本质上就是使用当前策略产生新的样本，然后使用新的样本更好的估计策略的价值，然后利用策略的价值更新策略，然后不断反复。理论可以证明最终策略将收敛到最优。<br>具体算法：<br><img src="/pic/14/2.png" alt></li>
 </ol>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>执行com.xr.code.generate.CodeGenerator类，会在指定路径（默认是在当前项目路径下）生成代码文件。</p>
-<h2 id="最终生成的代码样例"><a href="#最终生成的代码样例" class="headerlink" title="最终生成的代码样例"></a>最终生成的代码样例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">micro_service</span><br><span class="line">  └─ms-account</span><br><span class="line">      ├─ms-account-client-starter</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─client</span><br><span class="line">      │                                  AccountClient.java</span><br><span class="line">      │                                  UserLevelClient.java</span><br><span class="line">      │</span><br><span class="line">      ├─ms-account-common</span><br><span class="line">      │  └─src</span><br><span class="line">      │      └─main</span><br><span class="line">      │          └─java</span><br><span class="line">      │              └─com</span><br><span class="line">      │                  └─xr</span><br><span class="line">      │                      └─account</span><br><span class="line">      │                          └─common</span><br><span class="line">      │                              ├─controller</span><br><span class="line">      │                              │      IAccountController.java</span><br><span class="line">      │                              │      IUserLevelController.java</span><br><span class="line">      │                              │</span><br><span class="line">      │                              └─model</span><br><span class="line">      │                                      AccountModel.java</span><br><span class="line">      │                                      UserLevelModel.java</span><br><span class="line">      │</span><br><span class="line">      └─ms-account-service</span><br><span class="line">          └─src</span><br><span class="line">              └─main</span><br><span class="line">                  ├─java</span><br><span class="line">                  │  └─com</span><br><span class="line">                  │      └─xr</span><br><span class="line">                  │          └─account</span><br><span class="line">                  │              ├─controller</span><br><span class="line">                  │              │      AccountController.java</span><br><span class="line">                  │              │      UserLevelController.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              ├─mapper</span><br><span class="line">                  │              │      AccountMapper.java</span><br><span class="line">                  │              │      UserLevelMapper.java</span><br><span class="line">                  │              │</span><br><span class="line">                  │              └─service</span><br><span class="line">                  │                  │  IAccountService.java</span><br><span class="line">                  │                  │  IUserLevelService.java</span><br><span class="line">                  │                  │</span><br><span class="line">                  │                  └─impl</span><br><span class="line">                  │                          AccountServiceImpl.java</span><br><span class="line">                  │                          UserLevelServiceImpl.java</span><br><span class="line">                  │</span><br><span class="line">                  └─resources</span><br><span class="line">                      └─mybatis</span><br><span class="line">                          └─mapper</span><br><span class="line">                                  account.xml</span><br><span class="line">                                  userLevel.xml</span><br></pre></td></tr></table></figure>
-
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h2><ul>
-<li><p>默认所有表都有如下三个字段</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create_time 创建时间</span><br><span class="line">update_time 最后修改时间</span><br><span class="line">version 数据版本号（用于乐观锁实现）</span><br></pre></td></tr></table></figure>
+<h2 id="5-Value-Iteration-价值迭代"><a href="#5-Value-Iteration-价值迭代" class="headerlink" title="5 Value Iteration 价值迭代"></a>5 Value Iteration 价值迭代</h2><p>Value Iteration则是使用Bellman 最优方程得到<br>$$<br>\begin{aligned}<br>v_{<em>}(s)  &amp;=\max <em>{a} \mathbb{E}\left[R</em>{t+1}+\gamma v_{</em>}\left(S_{t+1}\right) | S_{t}=s, A_{t}=a\right] \\<br>          &amp;=\max <em>{a} \sum</em>{s^{\prime}, r} p\left(s^{\prime}, r | s, a\right)\left[r+\gamma v_{*}\left(s^{\prime}\right)\right]<br>\end{aligned}<br>$$</p>
+<p>然后改变成迭代形式<br>$$<br>\begin{aligned}<br>v_{<em>}(s)  &amp;=\max <em>{a} \mathbb{E}\left[R</em>{t+1}+\gamma v_{</em>}\left(S_{t+1}\right) | S_{t}=s, A_{t}=a\right] \\<br>          &amp;=\max <em>{a} \sum</em>{s^{\prime}, r} p\left(s^{\prime}, r | s, a\right)\left[r+\gamma v_{*}\left(s^{\prime}\right)\right]<br>\end{aligned}<br>$$</p>
+<p>value iteration的算法如下：<br><img src="/pic/14/3.png" alt></p>
+<p>那么问题来了：</p>
+<ul>
+<li>Policy Iteration和Value Iteration有什么本质区别？</li>
+<li>为什么一个叫policy iteration，一个叫value iteration呢？</li>
+</ul>
+<p>原因其实很好理解，policy iteration使用bellman方程来更新value，最后收敛的value 即$ v_\pi $是当前policy下的value值（所以叫做对policy进行评估），目的是为了后面的policy improvement得到新的policy。</p>
+<p>而value iteration是使用bellman 最优方程来更新value，最后收敛得到的value即$ v_* $就是当前state状态下的最优的value值。因此，只要最后收敛，那么最优的policy也就得到的。因此这个方法是基于更新value的，所以叫value iteration。</p>
+<p>从上面的分析看，value iteration较之policy iteration更直接。不过问题也都是一样，需要知道状态转移函数p才能计算。本质上依赖于模型，而且理想条件下需要遍历所有的状态，这在稍微复杂一点的问题上就基本不可能了。</p>
+<p>那么上面引用的是价值函数的版本，那么如果是使用动作价值函数呢，公式基本是一样的：<br>$$ Q_{i+1}(s,a)=\mathbb E_{s^\prime}[r+\lambda+\max_{a^\prime}Q_i(s^\prime,a^\prime)|s,a] $$</p>
+<p>怎么直观的理解呢？</p>
+<p>我们还在计算当前的Q值，怎么能有下一个Q值呢？没有错。所以，我们只能用之前的Q值。也就是没次根据新得到的reward和原来的Q值来更新现在的Q值。理论上可以证明这样的value iteration能够使Q值收敛到最优的action-value function。</p>
+<h2 id="6-Q-Learning"><a href="#6-Q-Learning" class="headerlink" title="6 Q-Learning"></a>6 Q-Learning</h2><p>Q Learning的思想完全根据value iteration得到。但要明确一点是value iteration每次都对所有的Q值更新一遍，也就是所有的状态和动作。但事实上在实际情况下我们没办法遍历所有的状态，还有所有的动作，我们只能得到有限的系列样本。因此，只能使用有限的样本进行操作。那么，怎么处理？Q Learning提出了一种更新Q值的办法：<br>$$ Q(S_{t},A_{t})+\leftarrow+Q(S_{t},A_{t})+\alpha({R_{t+1}+\lambda+\max+<em>aQ(S</em>{t+1},a)}+-+Q(S_t,A_t)) $$</p>
+<p>虽然根据value iteration计算出target Q值，但是这里并没有直接将这个Q值（是估计值）直接赋予新的Q，而是采用渐进的方式类似梯度下降，朝target迈近一小步，取决于α,这就能够减少估计误差造成的影响。类似随机梯度下降，最后可以收敛到最优的Q值。</p>
+<p>具体的算法如下：<br><img src="/pic/14/4.png" alt></p>
+<h3 id="7-Exploration-and-Exploitation-探索与利用"><a href="#7-Exploration-and-Exploitation-探索与利用" class="headerlink" title="7 Exploration and Exploitation 探索与利用"></a>7 Exploration and Exploitation 探索与利用</h3><p>在上面的算法中，我们可以看到需要使用某一个policy来生成动作，也就是说这个policy不是优化的那个policy，所以Q-Learning算法叫做Off-policy的算法。另一方面，因为Q-Learning完全不考虑model模型也就是环境的具体情况，只考虑看到的环境及reward，因此是model-free的方法。 </p>
+<p>回到policy的问题，那么要选择怎样的policy来生成action呢？有两种做法：</p>
+<ul>
+<li><p>随机的生成一个动作</p>
 </li>
-<li><p>所有表的更新操作，版本号自动++</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `table` SET version = version + 1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是代码模板文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/tpl</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是mybatis基础配置文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/resources/mybatis</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目中如下路径的文件是mapper和service的基础文件，按需调整。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code-generator/src/main/java/com/xr/base/core/service</span><br></pre></td></tr></table></figure>
-
+<li><p>根据当前的Q值计算出一个最优的动作，这个policy$ \pi $称之为greedy policy贪婪策略。也就是<br>$$ \pi(S_{t+1}) = arg\max+<em>aQ(S</em>{t+1},a) $$</p>
 </li>
 </ul>
+<p>使用随机的动作就是exploration，也就是探索未知的动作会产生的效果，有利于更新Q值，获得更好的policy。而使用greedy policy也就是target policy则是exploitation，利用policy，这个相对来说就不好更新出更好的Q值，但可以得到更好的测试效果用于判断算法是否有效。</p>
+<p>将两者结合起来就是所谓的$ \epsilon-greedy $策略，$ \epsilon $一般是一个很小的值，作为选取随机动作的概率值。可以更改$ \epsilon $的值从而得到不同的exploration和exploitation的比例。</p>
+<p>这里需要说明的一点是使用$ \epsilon-greedy $策略是一种极其简单粗暴的方法，对于一些复杂的任务采用这种方法来探索未知空间是不可取的。因此，最近有越来越多的方法来改进这种探索机制。</p>
+<h2 id="8-小结"><a href="#8-小结" class="headerlink" title="8 小结"></a>8 小结</h2><p>到了这里，我们已经分析了Q-Learning算法，这也就是DQN所依赖的增强学习算法。下一步我们就讲直接分析DQN的算法实现了。</p>
+<p>本文主要参考：</p>
+<p>1 <a href="https://link.zhihu.com/?target=https%3A//webdocs.cs.ualberta.ca/~sutton/book/the-book.html" target="_blank" rel="noopener">Reinforcement Learning: An Introduction</a><br>2 <a href="https://link.zhihu.com/?target=http%3A//www0.cs.ucl.ac.uk/staff/D.Silver/web/Teaching.html" target="_blank" rel="noopener">Reinforcement Learning Course by David Silver</a></p>
+<p>图片引用自：</p>
+<p><a href="https://link.zhihu.com/?target=http%3A//www0.cs.ucl.ac.uk/staff/D.Silver/web/Teaching.html" target="_blank" rel="noopener">Reinforcement Learning Course by David Silver</a> 的ppt</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="https://zhuanlan.zhihu.com/p/21262246?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃1 DQN与增强学习</a><br><a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃2 增强学习与MDP</a><br><a href="https://zhuanlan.zhihu.com/p/21340755?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃3 价值函数与Bellman方程</a><br><a href="https://zhuanlan.zhihu.com/p/21378532?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃4 动态规划与Q-Learning</a><br><a href="https://zhuanlan.zhihu.com/p/21421729?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃5 深度解读DQN算法</a><br><a href="https://zhuanlan.zhihu.com/p/21547911?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃6 DQN的各种改进</a><br><a href="https://zhuanlan.zhihu.com/p/21609472?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃7 连续控制DQN算法-NAF</a></p>
+<span style="font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;background-color: rgb(255, 255, 255);letter-spacing: 0.5px;font-size: 14px;color: rgb(136, 136, 136);">
+来源：
+
+<p><a href="https://www.zhihu.com/people/flood-sung/activities" target="_blank" rel="noopener">Flood Sung</a><br><a href="https://zhuanlan.zhihu.com/intelligentunit" target="_blank" rel="noopener">智能单元</a></p>
+</span>
+
+
+
 
       
 
@@ -251,7 +285,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
@@ -307,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/06/14/2-代码生成器/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://forvoyager.github.io/2019/08/20/14-DQN从入门到放弃4-动态规划与Q-Learning/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +355,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/17/3-别让手机偷走孩子的注意力/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          3.别让手机偷走孩子的注意力
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/13/1-github-hexo构建个人博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1.github+hexo构建个人博客</div>
+    <a href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DQN从入门到放弃3-价值函数与Bellman方程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +384,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码生成工具"><span class="toc-number">1.</span> <span class="toc-text">代码生成工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用方法"><span class="toc-number">2.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码信息配置"><span class="toc-number">2.1.</span> <span class="toc-text">代码信息配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成代码"><span class="toc-number">2.2.</span> <span class="toc-text">生成代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终生成的代码样例"><span class="toc-number">2.3.</span> <span class="toc-text">最终生成的代码样例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些约定"><span class="toc-number">3.1.</span> <span class="toc-text">一些约定</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-上文回顾"><span class="toc-number">1.</span> <span class="toc-text">1 上文回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Action-Value-function-动作价值函数"><span class="toc-number">2.</span> <span class="toc-text">2 Action-Value function 动作价值函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Optimal-value-function-最优价值函数"><span class="toc-number">3.</span> <span class="toc-text">3 Optimal value function 最优价值函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-策略迭代Policy-Iteration"><span class="toc-number">4.</span> <span class="toc-text">4 策略迭代Policy Iteration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Value-Iteration-价值迭代"><span class="toc-number">5.</span> <span class="toc-text">5 Value Iteration 价值迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Q-Learning"><span class="toc-number">6.</span> <span class="toc-text">6 Q-Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Exploration-and-Exploitation-探索与利用"><span class="toc-number">6.1.</span> <span class="toc-text">7 Exploration and Exploitation 探索与利用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-小结"><span class="toc-number">7.</span> <span class="toc-text">8 小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">8.</span> <span class="toc-text">链接</span></a></li></ol>
                     </div>
                 </span>
             </div>

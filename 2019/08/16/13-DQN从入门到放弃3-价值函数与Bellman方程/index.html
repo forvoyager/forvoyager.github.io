@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://forvoyager.github.io">
   <title>DQN从入门到放弃3-价值函数与Bellman方程 | 星空日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="增强学习与MDP">
+  <meta name="description" content="价值函数与Bellman方程">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DQN从入门到放弃3-价值函数与Bellman方程">
 <meta property="og:url" content="http://forvoyager.github.io/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/index.html">
 <meta property="og:site_name" content="星空日记">
-<meta property="og:description" content="增强学习与MDP">
+<meta property="og:description" content="价值函数与Bellman方程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
 <meta property="og:image" content="http://forvoyager.github.io/pic/13/1.png">
 <meta property="og:image" content="http://forvoyager.github.io/pic/13/2.png">
-<meta property="og:updated_time" content="2019-08-16T06:19:42.967Z">
+<meta property="og:updated_time" content="2019-08-16T06:37:09.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DQN从入门到放弃3-价值函数与Bellman方程">
-<meta name="twitter:description" content="增强学习与MDP">
+<meta name="twitter:description" content="价值函数与Bellman方程">
 <meta name="twitter:image" content="http://forvoyager.github.io/pic/11/bg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="星空日记" type="application/atom+xml">
@@ -205,7 +205,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/pic/11/bg.jpg" alt><br>增强学习与MDP</p>
+        <p><img src="/pic/11/bg.jpg" alt><br>价值函数与Bellman方程</p>
 <a id="more"></a>
 
 <h2 id="1-上文回顾"><a href="#1-上文回顾" class="headerlink" title="1 上文回顾"></a>1 上文回顾</h2><p>在上一篇文章<a href="https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit" target="_blank" rel="noopener">DQN 从入门到放弃 第二篇</a>中，我们探讨了增强学习问题的基本假设，然后引出了MDP马尔科夫决策过程。MDP只需要用一句话就可以说明白，就是“未来只取决于当前”，专业点说就是下一步的状态只取决于当前的状态，与过去的状态没有关系。这里大家要注意这里所说的状态是<strong>完全可观察的</strong>，也就是上帝眼中的世界。再举例说明一下完全可观察的意思就是比如我们的眼睛看到的世界，那就是不完全可观察的，我们并不清楚的知道眼前的每一个物体，比如人，车，动物的真实物理位置，因此也就是无法准确知道它们下一个时刻的状态（比如车的位置）只能通过估算的方法来估计。而在上帝眼中，那么每一个物体的位置和速度信息都是确定的，也因此下一个时刻的状态也就是完全确定的。</p>
@@ -221,18 +221,18 @@
 <p>我们先来解释一下直接基于Policy的方法是怎样的。</p>
 <p>直接基于Policy的意思就是我们有一套Policy策略，我们基于这个策略进行操作，比如可以有如下所示的策略：</p>
 <blockquote>
-<p>if 资金X &gt; 500000:<br>     选择股票投资<br>  else if 资金X &gt; 100000:<br>     选择房产投资<br>  else:<br>     选择买书，买设备自我提升</p>
+<p>if 资金X &gt; 500000:<br>  &emsp;&emsp;选择股票投资<br>  else if 资金X &gt; 100000:<br>  &emsp;&emsp;选择房产投资<br>  else:<br>  &emsp;&emsp;选择买书，买设备自我提升</p>
 </blockquote>
 <p>那么上面的伪代码就是表示一个极其简单的策略。这个策略只考虑资金量，输入资金量，输出决策方式。如果把Policy策略看做是一个黑箱，那么基于策略的方法就是：<br><img src="/pic/13/1.png" alt><br>那么如果不是基于Policy策略直接做出决策，我们还有什么办法呢？</p>
 <p>显然有，而且大家可以从上面的简单策略看到一个最大的缺陷，就是上面的策略完全不考虑每一种选择未来的价值。我们做决策是有目的的，那就是为了最大化未来的回报Result是不是？那么对于上面的投资选择问题，我们的目标就是希望我们的投资回报率最高。因此，上面的简单策略竟然完全不考虑每一种选择的价值，而仅考虑资金量，显然是一种欠考虑的方法。因此，我们是不是应该评估一下每一种选择的潜在价值呢？耶，价值Value出来了，是不是？通过对价值的评估，我们也就可以有如下的做决策的方法：<br><img src="/pic/13/2.png" alt><br>我们就评估每一种状态（选择+资金量）的价值，然后选择价值最高的作为最后的决策。</p>
 <p>比如说：</p>
 <blockquote>
-<p>if 投资股市:<br>     因为股市低迷，价值为-100<br> if 投资房产 + 资金量 &gt; 100000:<br>     因为房产泡沫还没破，各地房价还在涨，价值为+500<br> if 提升自己 + 资金量 &lt; 100000:<br>     当前人工智能潜力巨大，资金又不算太大，投资自己价值为+1000<br> …(更多的评估价值的方法）</p>
+<p>if 投资股市:<br> &emsp;&emsp;因为股市低迷，价值为-100<br> if 投资房产 + 资金量 &gt; 100000:<br> &emsp;&emsp;因为房产泡沫还没破，各地房价还在涨，价值为+500<br> if 提升自己 + 资金量 &lt; 100000:<br> &emsp;&emsp;当前人工智能潜力巨大，资金又不算太大，投资自己价值为+1000<br> …(更多的评估价值的方法）</p>
 </blockquote>
 <p>OK, 假设现在我们有50000的资金，那么根据我们的价值估算方法，选择投资自己的价值最大，为+1000，因此我们就选择投资自己作为决策结果。</p>
 <p>从数学的角度，我们常常会用一个函数$ V(s) $来表示一个状态的价值，也可以用$ Q(s,a) $来表示状态及某一个动作的价值。我们上面的例子就是来评估某一个状态下动作的价值，然后根据价值做出判断。实际上我们这里也是有策略的，我们的策略更简单：</p>
 <blockquote>
-<p>if 某一个决策的价值最大：<br>     选择这个决策</p>
+<p>if 某一个决策的价值最大：<br>&emsp;&emsp;选择这个决策</p>
 </blockquote>
 <p>这就是价值函数的意义。在后面的文章当中，我们还会发现，其实我们还可以同时使用策略加价值评估的方法来联合给出决策，这种算法就是所谓的<strong>Actor-Critic</strong>算法。这里就不多加介绍了。</p>
 <h2 id="3-再谈增强学习的意义"><a href="#3-再谈增强学习的意义" class="headerlink" title="3 再谈增强学习的意义"></a>3 再谈增强学习的意义</h2><p>从上面的例子想必大家会发现，增强学习面向的决策与控制问题与我们的行为息息相关。我们想要让计算机自己能够学习做出某种决策，并且是可以不断改进的决策。对于人工智能，最大的目的不就是要创造智能，会自己思考，能模仿人类的行为，从而能够代替人类做事情吗？增强学习的目的就是希望计算机能够模仿人类的行为。这样一看，知友们是不是马上觉得增强学习意义非常之大。</p>
@@ -269,7 +269,7 @@
 <p>我们下面将不得不引入点数学公式，虽然也会非常好理解。</p>
 <p>还记得<strong>回报Result</strong>的基本定义吗？就是所有Reward的累加（带衰减系数discount factor）<br>$$ G_t=R_{t+1}+\lambda R_{t+2}+…=\sum_{k=0}^\infty\lambda^kR_{t+k+1} $$</p>
 <p>那么Value Function该如何定义？也很简单，就是期望的回报啊！期望的回报越高，价值显然也就越大，也就越值得去选择。用数学来定义就是如下：<br>$$ v(s)=\mathbb E[G_t|S_t=s] $$</p>
-<p>接下来，我们把上式展开如下：<br>\begin{align}<br>v(s)=\mathbb E[G_t|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda R_{t+2}+\lambda ^2R_{t+3}+…|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda (R_{t+2}+\lambda R_{t+3}+…)|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda+G_{t+1}|S_t=s]<br>    =\mathbb E[R_{t+1}+\lambda+v(S_{t+1})|S_t=s]<br>\end{align}</p>
+<p>接下来，我们把上式展开如下：<br>\begin{align}<br>v(s)&amp;=\mathbb E[G_t|S_t=s]\\<br>    &amp;=\mathbb E[R_{t+1}+\lambda R_{t+2}+\lambda ^2R_{t+3}+…|S_t=s]\\<br>    &amp;=\mathbb E[R_{t+1}+\lambda (R_{t+2}+\lambda R_{t+3}+…)|S_t=s]\\<br>    &amp;=\mathbb E[R_{t+1}+\lambda+G_{t+1}|S_t=s]\\<br>    &amp;=\mathbb E[R_{t+1}+\lambda+v(S_{t+1})|S_t=s]<br>\end{align}</p>
 <p>因此，<br>$$ v(s)=\mathbb E[R_{t+1}+\lambda v(S_{t+1})|S_t=s] $$</p>
 <p>上面这个公式就是<strong>Bellman方程</strong>的基本形态。从公式上看，当前状态的价值和下一步的价值以及当前的反馈Reward有关。</p>
 <blockquote>
@@ -366,6 +366,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/08/20/14-DQN从入门到放弃4-动态规划与Q-Learning/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DQN从入门到放弃4-动态规划与Q-Learning
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/15/12-DQN从入门到放弃2-增强学习与MDP/" id="article-nav-older" class="article-nav-link-wrap">
@@ -533,11 +542,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">未分类</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
