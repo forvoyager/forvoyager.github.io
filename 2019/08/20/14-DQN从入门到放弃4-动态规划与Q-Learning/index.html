@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://forvoyager.github.io/pic/14/2.png">
 <meta property="og:image" content="http://forvoyager.github.io/pic/14/3.png">
 <meta property="og:image" content="http://forvoyager.github.io/pic/14/4.png">
-<meta property="og:updated_time" content="2019-08-20T08:05:44.043Z">
+<meta property="og:updated_time" content="2019-08-22T07:37:45.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DQN从入门到放弃4-动态规划与Q-Learning">
 <meta name="twitter:description" content="价值函数与Bellman方程">
@@ -244,7 +244,7 @@
 <p>那么上面引用的是价值函数的版本，那么如果是使用动作价值函数呢，公式基本是一样的：<br>$$ Q_{i+1}(s,a)=\mathbb E_{s^\prime}[r+\lambda+\max_{a^\prime}Q_i(s^\prime,a^\prime)|s,a] $$</p>
 <p>怎么直观的理解呢？</p>
 <p>我们还在计算当前的Q值，怎么能有下一个Q值呢？没有错。所以，我们只能用之前的Q值。也就是没次根据新得到的reward和原来的Q值来更新现在的Q值。理论上可以证明这样的value iteration能够使Q值收敛到最优的action-value function。</p>
-<h2 id="6-Q-Learning"><a href="#6-Q-Learning" class="headerlink" title="6 Q-Learning"></a>6 Q-Learning</h2><p>Q Learning的思想完全根据value iteration得到。但要明确一点是value iteration每次都对所有的Q值更新一遍，也就是所有的状态和动作。但事实上在实际情况下我们没办法遍历所有的状态，还有所有的动作，我们只能得到有限的系列样本。因此，只能使用有限的样本进行操作。那么，怎么处理？Q Learning提出了一种更新Q值的办法：<br>$$ Q(S_{t},A_{t})+\leftarrow+Q(S_{t},A_{t})+\alpha({R_{t+1}+\lambda+\max+<em>aQ(S</em>{t+1},a)}+-+Q(S_t,A_t)) $$</p>
+<h2 id="6-Q-Learning"><a href="#6-Q-Learning" class="headerlink" title="6 Q-Learning"></a>6 Q-Learning</h2><p>Q Learning的思想完全根据value iteration得到。但要明确一点是value iteration每次都对所有的Q值更新一遍，也就是所有的状态和动作。但事实上在实际情况下我们没办法遍历所有的状态，还有所有的动作，我们只能得到有限的系列样本。因此，只能使用有限的样本进行操作。那么，怎么处理？Q Learning提出了一种更新Q值的办法：<br>$$ Q(S_{t},A_{t})+\leftarrow+Q(S_{t},A_{t})+\alpha({R_{t+1}+\lambda+\max_aQ(S_{t+1},a)}+-+Q(S_t,A_t)) $$</p>
 <p>虽然根据value iteration计算出target Q值，但是这里并没有直接将这个Q值（是估计值）直接赋予新的Q，而是采用渐进的方式类似梯度下降，朝target迈近一小步，取决于α,这就能够减少估计误差造成的影响。类似随机梯度下降，最后可以收敛到最优的Q值。</p>
 <p>具体的算法如下：<br><img src="/pic/14/4.png" alt></p>
 <h3 id="7-Exploration-and-Exploitation-探索与利用"><a href="#7-Exploration-and-Exploitation-探索与利用" class="headerlink" title="7 Exploration and Exploitation 探索与利用"></a>7 Exploration and Exploitation 探索与利用</h3><p>在上面的算法中，我们可以看到需要使用某一个policy来生成动作，也就是说这个policy不是优化的那个policy，所以Q-Learning算法叫做Off-policy的算法。另一方面，因为Q-Learning完全不考虑model模型也就是环境的具体情况，只考虑看到的环境及reward，因此是model-free的方法。 </p>
@@ -252,7 +252,7 @@
 <ul>
 <li><p>随机的生成一个动作</p>
 </li>
-<li><p>根据当前的Q值计算出一个最优的动作，这个policy$ \pi $称之为greedy policy贪婪策略。也就是<br>$$ \pi(S_{t+1}) = arg\max+<em>aQ(S</em>{t+1},a) $$</p>
+<li><p>根据当前的Q值计算出一个最优的动作，这个policy$ \pi $称之为greedy policy贪婪策略。也就是<br>$$ \pi(S_{t+1})+=+arg\max+<em>aQ(S</em>{t+1},a) $$</p>
 </li>
 </ul>
 <p>使用随机的动作就是exploration，也就是探索未知的动作会产生的效果，有利于更新Q值，获得更好的policy。而使用greedy policy也就是target policy则是exploitation，利用policy，这个相对来说就不好更新出更好的Q值，但可以得到更好的测试效果用于判断算法是否有效。</p>
@@ -354,6 +354,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/08/22/15-DQN从入门到放弃5-深度解读DQN算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DQN从入门到放弃5-深度解读DQN算法
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/16/13-DQN从入门到放弃3-价值函数与Bellman方程/" id="article-nav-older" class="article-nav-link-wrap">
